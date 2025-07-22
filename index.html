@@ -148,13 +148,68 @@
             </div>
             <div class="hero-visual">
                 <div class="ai-brain">
-                    <div class="neural-network">
-                        <div class="neuron"></div>
-                        <div class="neuron"></div>
-                        <div class="neuron"></div>
-                        <div class="neuron"></div>
-                        <div class="neuron"></div>
-                        <div class="neuron"></div>
+                    <div class="neural-network-interactive">
+                        <!-- Input Layer -->
+                        <div class="neural-layer" data-layer="input">
+                            <div class="layer-label">Input Layer</div>
+                            <div class="neuron" data-neuron="0"></div>
+                            <div class="neuron" data-neuron="1"></div>
+                            <div class="neuron" data-neuron="2"></div>
+                            <div class="neuron" data-neuron="3"></div>
+                        </div>
+                        
+                        <!-- Hidden Layer 1 -->
+                        <div class="neural-layer" data-layer="hidden1">
+                            <div class="layer-label">Hidden Layer</div>
+                            <div class="neuron" data-neuron="0"></div>
+                            <div class="neuron" data-neuron="1"></div>
+                            <div class="neuron" data-neuron="2"></div>
+                            <div class="neuron" data-neuron="3"></div>
+                            <div class="neuron" data-neuron="4"></div>
+                            <div class="neuron" data-neuron="5"></div>
+                        </div>
+                        
+                        <!-- Hidden Layer 2 -->
+                        <div class="neural-layer" data-layer="hidden2">
+                            <div class="layer-label">Deep Layer</div>
+                            <div class="neuron" data-neuron="0"></div>
+                            <div class="neuron" data-neuron="1"></div>
+                            <div class="neuron" data-neuron="2"></div>
+                            <div class="neuron" data-neuron="3"></div>
+                        </div>
+                        
+                        <!-- Output Layer -->
+                        <div class="neural-layer" data-layer="output">
+                            <div class="layer-label">Output Layer</div>
+                            <div class="neuron" data-neuron="0"></div>
+                            <div class="neuron" data-neuron="1"></div>
+                        </div>
+                        
+                        <!-- Connections Canvas -->
+                        <canvas id="neuralConnections" class="neural-connections"></canvas>
+                        
+                        <!-- Data Flow Indicators -->
+                        <div class="data-flow">
+                            <div class="flow-particle"></div>
+                            <div class="flow-particle"></div>
+                            <div class="flow-particle"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Neural Network Stats -->
+                    <div class="neural-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="neuralAccuracy">97.8%</span>
+                            <span class="stat-label">Accuracy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="neuralLoss">0.023</span>
+                            <span class="stat-label">Loss</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="neuralEpoch">245</span>
+                            <span class="stat-label">Epochs</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -223,6 +278,134 @@
                     <div class="stat-item">
                         <span class="stat-number">2</span>
                         <span class="stat-label">Diplômes obtenus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Analytics Showcase Section -->
+    <section id="analytics" class="analytics-showcase">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-text">Data Analytics Live</span>
+                <span class="title-underline"></span>
+            </h2>
+            
+            <div class="analytics-grid" data-aos="fade-up">
+                <!-- Real-time Metrics -->
+                <div class="analytics-card metrics-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Performance Metrics</h3>
+                        <span class="live-indicator">LIVE</span>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="analytics-metric">
+                            <div class="metric-value" id="portfolioViews">1,247</div>
+                            <div class="metric-label">Portfolio Views</div>
+                            <div class="metric-trend up">+23%</div>
+                        </div>
+                        <div class="analytics-metric">
+                            <div class="metric-value" id="projectClicks">89</div>
+                            <div class="metric-label">Project Interactions</div>
+                            <div class="metric-trend up">+15%</div>
+                        </div>
+                        <div class="analytics-metric">
+                            <div class="metric-value" id="skillsViewed">156</div>
+                            <div class="metric-label">Skills Explored</div>
+                            <div class="metric-trend up">+8%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ML Model Performance -->
+                <div class="analytics-card model-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>ML Model Performance</h3>
+                    </div>
+                    <div class="model-metrics">
+                        <div class="accuracy-gauge">
+                            <svg class="gauge-svg" viewBox="0 0 200 120">
+                                <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100"></path>
+                                <path class="gauge-fill" d="M 20 100 A 80 80 0 0 1 180 100" id="accuracyPath"></path>
+                                <text x="100" y="90" class="gauge-text" id="accuracyText">97.8%</text>
+                                <text x="100" y="110" class="gauge-label">Model Accuracy</text>
+                            </svg>
+                        </div>
+                        <div class="model-stats">
+                            <div class="model-stat">
+                                <span class="stat-name">Precision</span>
+                                <span class="stat-value">96.2%</span>
+                            </div>
+                            <div class="model-stat">
+                                <span class="stat-name">Recall</span>
+                                <span class="stat-value">98.1%</span>
+                            </div>
+                            <div class="model-stat">
+                                <span class="stat-name">F1-Score</span>
+                                <span class="stat-value">97.1%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Processing Pipeline -->
+                <div class="analytics-card pipeline-card">
+                    <div class="card-header">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Data Pipeline</h3>
+                        <span class="processing-status">Processing...</span>
+                    </div>
+                    <div class="pipeline-flow">
+                        <div class="pipeline-stage active" data-stage="ingestion">
+                            <div class="stage-icon"><i class="fas fa-download"></i></div>
+                            <div class="stage-label">Data Ingestion</div>
+                            <div class="stage-progress">
+                                <div class="progress-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="pipeline-arrow"></div>
+                        <div class="pipeline-stage active" data-stage="preprocessing">
+                            <div class="stage-icon"><i class="fas fa-filter"></i></div>
+                            <div class="stage-label">Preprocessing</div>
+                            <div class="stage-progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="pipeline-arrow"></div>
+                        <div class="pipeline-stage" data-stage="modeling">
+                            <div class="stage-icon"><i class="fas fa-brain"></i></div>
+                            <div class="stage-label">ML Modeling</div>
+                            <div class="stage-progress">
+                                <div class="progress-bar" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div class="pipeline-arrow"></div>
+                        <div class="pipeline-stage" data-stage="deployment">
+                            <div class="stage-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="stage-label">Deployment</div>
+                            <div class="stage-progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Chart -->
+                <div class="analytics-card chart-card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area"></i>
+                        <h3>Data Trends</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-chart="accuracy">Accuracy</button>
+                            <button class="chart-btn" data-chart="loss">Loss</button>
+                            <button class="chart-btn" data-chart="performance">Performance</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="trendChart" class="trend-chart"></canvas>
                     </div>
                 </div>
             </div>

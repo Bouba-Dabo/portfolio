@@ -653,6 +653,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectDemos();
     initScrollNavbar();
     
+    // Initialize data visualizations
+    initializeDataVisualizations();
+    
     // Initialize advanced loading screen
     initAdvancedLoadingScreen();
     
@@ -672,6 +675,241 @@ document.addEventListener('DOMContentLoaded', function() {
             offset: 50
         });
     }
+
+// Neural Network Visualization Functions
+function initializeNeuralNetwork() {
+    const networkContainer = document.querySelector('.neural-network-interactive');
+    if (!networkContainer) return;
+
+    const neurons = networkContainer.querySelectorAll('.neuron');
+    const canvas = document.querySelector('.neural-connections');
+    
+    if (!canvas) {
+        const canvasElement = document.createElement('canvas');
+        canvasElement.className = 'neural-connections';
+        canvasElement.width = 500;
+        canvasElement.height = 300;
+        networkContainer.appendChild(canvasElement);
+        
+        drawNeuralConnections(canvasElement);
+    }
+
+    // Animate neurons periodically
+    setInterval(() => {
+        neurons.forEach((neuron, index) => {
+            setTimeout(() => {
+                neuron.classList.add('active');
+                setTimeout(() => neuron.classList.remove('active'), 800);
+            }, index * 200);
+        });
+    }, 4000);
+
+    // Add data flow particles
+    addDataFlowParticles(networkContainer);
+    
+    // Update neural stats
+    updateNeuralStats();
+}
+
+function drawNeuralConnections(canvas) {
+    const ctx = canvas.getContext('2d');
+    const layers = document.querySelectorAll('.neural-layer');
+    
+    ctx.strokeStyle = 'rgba(0, 212, 255, 0.3)';
+    ctx.lineWidth = 2;
+    
+    // Draw connections between layers
+    for (let i = 0; i < layers.length - 1; i++) {
+        const currentLayer = layers[i];
+        const nextLayer = layers[i + 1];
+        const currentNeurons = currentLayer.querySelectorAll('.neuron');
+        const nextNeurons = nextLayer.querySelectorAll('.neuron');
+        
+        currentNeurons.forEach(currentNeuron => {
+            nextNeurons.forEach(nextNeuron => {
+                const currentRect = currentNeuron.getBoundingClientRect();
+                const nextRect = nextNeuron.getBoundingClientRect();
+                const containerRect = canvas.getBoundingClientRect();
+                
+                const startX = currentRect.left - containerRect.left + currentRect.width / 2;
+                const startY = currentRect.top - containerRect.top + currentRect.height / 2;
+                const endX = nextRect.left - containerRect.left + nextRect.width / 2;
+                const endY = nextRect.top - containerRect.top + nextRect.height / 2;
+                
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+            });
+        });
+    }
+}
+
+function addDataFlowParticles(container) {
+    const dataFlow = document.createElement('div');
+    dataFlow.className = 'data-flow';
+    
+    for (let i = 0; i < 6; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'flow-particle';
+        particle.style.animationDelay = `${i * 0.5}s`;
+        dataFlow.appendChild(particle);
+    }
+    
+    container.appendChild(dataFlow);
+}
+
+function updateNeuralStats() {
+    const stats = {
+        accuracy: (Math.random() * 5 + 95).toFixed(1),
+        layers: '4',
+        neurons: '128',
+        epochs: Math.floor(Math.random() * 50 + 150)
+    };
+    
+    const statElements = document.querySelectorAll('.neural-stats .stat-value');
+    if (statElements.length >= 4) {
+        statElements[0].textContent = `${stats.accuracy}%`;
+        statElements[1].textContent = stats.layers;
+        statElements[2].textContent = stats.neurons;
+        statElements[3].textContent = stats.epochs;
+    }
+}
+
+// Analytics Dashboard Functions
+function initializeAnalyticsDashboard() {
+    updateMetrics();
+    initializeGauges();
+    initializePipeline();
+    
+    // Update metrics every 3 seconds
+    setInterval(updateMetrics, 3000);
+    setInterval(updateGauges, 5000);
+    setInterval(updatePipeline, 7000);
+}
+
+function updateMetrics() {
+    const metrics = {
+        accuracy: (Math.random() * 3 + 97).toFixed(1),
+        precision: (Math.random() * 2 + 98).toFixed(1),
+        recall: (Math.random() * 4 + 96).toFixed(1),
+        f1score: (Math.random() * 2 + 97.5).toFixed(1),
+        processed: Math.floor(Math.random() * 1000 + 15000),
+        speed: (Math.random() * 50 + 250).toFixed(0)
+    };
+    
+    const metricElements = document.querySelectorAll('.metric-value');
+    if (metricElements.length >= 6) {
+        metricElements[0].textContent = `${metrics.accuracy}%`;
+        metricElements[1].textContent = `${metrics.precision}%`;
+        metricElements[2].textContent = `${metrics.recall}%`;
+        metricElements[3].textContent = `${metrics.f1score}%`;
+        metricElements[4].textContent = metrics.processed.toLocaleString();
+        metricElements[5].textContent = `${metrics.speed}/s`;
+    }
+}
+
+function initializeGauges() {
+    const gauges = document.querySelectorAll('.gauge-fill');
+    const values = [94, 96, 92, 98]; // Accuracy, Precision, Recall, F1-Score
+    
+    gauges.forEach((gauge, index) => {
+        if (index < values.length) {
+            const circumference = 283; // 2 * π * r (r = 45)
+            const offset = circumference - (values[index] / 100) * circumference;
+            gauge.style.strokeDashoffset = offset;
+        }
+    });
+}
+
+function updateGauges() {
+    const gauges = document.querySelectorAll('.gauge-fill');
+    const gaugeValues = document.querySelectorAll('.gauge-value');
+    
+    gauges.forEach((gauge, index) => {
+        const randomValue = Math.random() * 5 + 92; // 92-97%
+        const circumference = 283;
+        const offset = circumference - (randomValue / 100) * circumference;
+        
+        gauge.style.strokeDashoffset = offset;
+        if (gaugeValues[index]) {
+            gaugeValues[index].textContent = `${randomValue.toFixed(1)}%`;
+        }
+    });
+}
+
+function initializePipeline() {
+    const stages = document.querySelectorAll('.pipeline-stage');
+    let currentStage = 0;
+    
+    function animatePipeline() {
+        stages.forEach((stage, index) => {
+            stage.classList.remove('active', 'processing');
+            
+            if (index < currentStage) {
+                stage.classList.add('completed');
+            } else if (index === currentStage) {
+                stage.classList.add('processing');
+            }
+        });
+        
+        setTimeout(() => {
+            if (stages[currentStage]) {
+                stages[currentStage].classList.remove('processing');
+                stages[currentStage].classList.add('active');
+            }
+            
+            currentStage = (currentStage + 1) % stages.length;
+        }, 2000);
+    }
+    
+    // Initial animation
+    animatePipeline();
+}
+
+function updatePipeline() {
+    const progressBar = document.querySelector('.progress-bar');
+    if (progressBar) {
+        const newWidth = Math.random() * 20 + 70; // 70-90%
+        progressBar.style.width = `${newWidth}%`;
+    }
+}
+
+function initializeChartControls() {
+    const chartButtons = document.querySelectorAll('.chart-btn');
+    
+    chartButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            chartButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Simulate chart data change
+            updateChartDisplay(this.textContent.toLowerCase());
+        });
+    });
+    
+    // Set first button as active
+    if (chartButtons.length > 0) {
+        chartButtons[0].classList.add('active');
+    }
+}
+
+function updateChartDisplay(chartType) {
+    console.log(`Updating chart display for: ${chartType}`);
+    // This would integrate with Chart.js or similar library
+}
+
+// Main initialization function for data visualizations
+function initializeDataVisualizations() {
+    try {
+        initializeNeuralNetwork();
+        initializeAnalyticsDashboard();
+        initializeChartControls();
+        console.log('✨ Data visualizations initialized successfully');
+    } catch (error) {
+        console.warn('⚠️ Error initializing data visualizations:', error);
+    }
+}
     
     console.log('🚀 Portfolio sécurisé et optimisé initialisé !');
 });
