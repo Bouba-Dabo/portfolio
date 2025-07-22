@@ -40,7 +40,7 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - 📍 **Localisation** : Rouen (études) • Saint-Denis Paris (résidence)
 - 🚀 **Objectif** : Stage à partir de Février 2026 (CDI possible)
 - 📧 **Contact** : dabom372@gmail.com
-- 💼 **LinkedIn** : [boubacar-dabo-94206a291](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
+- 💼 **LinkedIn** : [Boubacar Dabo](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
 
 ## 💼 Projets présentés
 
@@ -74,7 +74,7 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 ### Data Science
 - Pandas, NumPy, Plotly, Streamlit
 - Data Analysis, Visualization
-- Business Intelligence
+- Business Intelligence, Power BI
 
 ### Bases de Données & Modélisation
 - SQL (PostgreSQL, MySQL)
@@ -205,7 +205,7 @@ Optimisé pour tous les appareils :
 - 📍 **Localisation** : Rouen • Saint-Denis Paris
 - 🎯 **Objectif** : Stage à partir de Février 2026 (CDI possible)
 - 🔗 **GitHub** : [Bouba-Dabo](https://github.com/Bouba-Dabo)
-- 💼 **LinkedIn** : [boubacar-dabo-94206a291](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
+- 💼 **LinkedIn** : [Boubacar Dabo](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
 
 ## 📄 Licence
 
