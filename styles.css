@@ -567,6 +567,74 @@ body.loading {
     background: var(--bg-primary);
 }
 
+/* Professional Note Styling */
+.projects-note, .github-note {
+    margin: 2rem auto 3rem auto;
+    max-width: 800px;
+}
+
+.projects-note .note-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 0, 107, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.github-note .note-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.projects-note .note-content:hover {
+    border-color: var(--secondary-color);
+    background: rgba(255, 0, 107, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 0, 107, 0.2);
+}
+
+.github-note .note-content:hover {
+    border-color: var(--primary-color);
+    background: rgba(0, 212, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+}
+
+.projects-note .note-content i {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    min-width: 24px;
+}
+
+.github-note .note-content i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    min-width: 24px;
+}
+
+.note-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.note-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -697,6 +765,26 @@ body.loading {
 .project-link:hover {
     color: var(--text-primary);
     transform: translateX(5px);
+}
+
+.project-link.private-repo {
+    color: var(--secondary-color);
+    cursor: default;
+    opacity: 0.8;
+}
+
+.project-link.private-repo:hover {
+    transform: none;
+    color: var(--secondary-color);
+}
+
+.project-link.private-repo i {
+    animation: lock-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lock-pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
 }
 
 /* Skills Section */

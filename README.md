@@ -40,6 +40,7 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - 📍 **Localisation** : Rouen (études) • Saint-Denis Paris (résidence)
 - 🚀 **Objectif** : Temps plein jusqu'en Septembre 2025
 - 📧 **Contact** : dabom372@gmail.com
+- 💼 **LinkedIn** : [boubacar-dabo-94206a291](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
 
 ## 💼 Projets présentés
 
@@ -50,6 +51,13 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 5. **Assistant Claude GPT** - IA conversationnelle
 6. **Classification RFID** - ML pour identification automatique
 7. **Analyse Sentiment Tweets** - NLP pour opinion publique
+
+🚀 **[Démonstration Interactive - Showcase App](https://bouba-dabo-showcase-app-hnfxcf.streamlit.app/)**  
+💻 **[Code Source Showcase - GitHub](https://github.com/Bouba-Dabo/showcase)**
+
+> **Note** : La majorité de mes projets sont hébergés dans des repositories privés pour des raisons de confidentialité académique et professionnelle. Le code source peut être partagé sur demande lors d'entretiens.
+
+> **GitHub Activity** : Mon profil GitHub peut ne pas refléter l'ensemble de mon activité de développement car une grande partie de mon travail s'effectue sur des repositories privés d'entreprise, des projets académiques confidentiels, ou des environnements de développement internes.
 
 ## 🎯 Compétences techniques
 
@@ -187,6 +195,7 @@ Optimisé pour tous les appareils :
 - 📍 **Localisation** : Rouen • Saint-Denis Paris
 - 🎯 **Objectif** : Temps plein jusqu'en Septembre 2025
 - 🔗 **GitHub** : [Bouba-Dabo](https://github.com/Bouba-Dabo)
+- 💼 **LinkedIn** : [boubacar-dabo-94206a291](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
 
 ## 📄 Licence
 
