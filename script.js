@@ -1,6 +1,14 @@
 // Portfolio JavaScript - Animations and Interactions
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+
     // Navigation functionality
     initNavigation();
     
@@ -27,6 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Parallax effects
     initParallaxEffects();
+    
+    // NEW: CV Download functionality
+    initCVDownload();
+    
+    // NEW: Project filters
+    initProjectFilters();
+    
+    // NEW: Loading screen
+    initLoadingScreen();
+    
+    // NEW: Notifications system
+    initNotifications();
 });
 
 // Navigation functionality
@@ -660,6 +680,364 @@ function initLoadingScreen() {
         @keyframes loading {
             0% { width: 0%; }
             100% { width: 100%; }
+        }
+    `;
+    
+    // Inject the styles
+    const style = document.createElement('style');
+    style.textContent = loadingStyles;
+    document.head.appendChild(style);
+}
+
+// NEW FUNCTIONS FOR ENHANCED PORTFOLIO
+
+// CV Download functionality
+function initCVDownload() {
+    const downloadBtn = document.getElementById('downloadCV');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadCV();
+            showNotification('CV téléchargé avec succès!', 'success');
+        });
+    }
+}
+
+function downloadCV() {
+    const cvContent = `
+BOUBACAR DABO
+Étudiant-Ingénieur Big Data & Intelligence Artificielle
+
+Contact:
+📧 Email: dabom372@gmail.com
+📍 Localisation: Rouen (études) • Saint-Denis Paris (résidence)
+🌐 Portfolio: https://bouba-dabo.github.io/portfolio
+
+OBJECTIF:
+Stage de fin d'études en Data Science / Intelligence Artificielle (Février 2026)
+
+FORMATION:
+• ESIGELEC - Cycle Ingénieur Big Data & Transformation Numérique (2023-2026)
+• Classes Préparatoires Scientifiques - ESMT Dakar (2021-2023)
+• Diplôme MPI - Université Cheikh Anta Diop (2021-2023)
+• Baccalauréat Sciences Expérimentales - Lycée Limamoulaye (2020-2021)
+
+COMPÉTENCES TECHNIQUES:
+Intelligence Artificielle & ML:
+• PyTorch, TensorFlow, Scikit-learn
+• Deep Learning, Neural Networks
+• Computer Vision, NLP
+
+Data Science:
+• Pandas, NumPy, Plotly, Streamlit
+• Data Analysis & Visualization
+• Business Intelligence
+
+Développement:
+• Python, FastAPI, Git/GitHub
+• Docker, Cloud Computing
+• API Development
+
+PROJETS PRINCIPAUX:
+• IA_PRO - Assistant documentaire avec RAG et LangChain
+• Mini-GPT PyTorch - Implémentation transformer from scratch
+• DocuAI - Application NLP pour extraction d'informations
+• E-commerce Analyzer - Dashboard analytics avec Streamlit
+• Assistant Claude GPT - IA conversationnelle personnalisée
+• Classification RFID - ML pour identification automatique
+• Analyse Sentiment Tweets - NLP pour opinion publique
+
+LANGUES:
+• Français (Natif)
+• Anglais (Courant technique)
+
+DISPONIBILITÉ:
+• Février 2026 - Juillet 2026
+• 6 mois - Temps plein
+• Mobilité géographique : France, Europe
+• Remote possible
+    `;
+
+    const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'CV_Boubacar_DABO_IA_DataScience.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+// Project filters functionality
+function initProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (filterButtons.length === 0) return;
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            const filter = this.getAttribute('data-filter');
+            
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.6s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+// Loading screen functionality
+function initLoadingScreen() {
+    const loadingScreen = document.createElement('div');
+    loadingScreen.className = 'loading-screen';
+    loadingScreen.innerHTML = `
+        <div class="loading-content">
+            <div class="loading-logo">
+                <span class="logo-text">BOUBACAR DABO</span>
+                <span class="logo-subtitle">Engineering Intelligent Futures</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-text">Chargement du portfolio...</div>
+        </div>
+    `;
+    
+    document.body.appendChild(loadingScreen);
+    
+    // Hide loading screen after page load
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                if (loadingScreen.parentNode) {
+                    loadingScreen.remove();
+                }
+            }, 500);
+        }, 1500);
+    });
+}
+
+// Notifications system
+function initNotifications() {
+    // Add notification styles
+    const notificationStyles = `
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 15px 20px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1001;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+        }
+        
+        .notification.success {
+            border-color: #10b981;
+        }
+        
+        .notification.success i {
+            color: #10b981;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+            padding: 0;
+        }
+        
+        .notification-close:hover {
+            color: var(--text-primary);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-content {
+            text-align: center;
+        }
+        
+        .loading-logo .logo-text {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .loading-logo .logo-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 40px;
+        }
+        
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+        
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            animation: loading-animation 2s ease-in-out forwards;
+        }
+        
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes loading-animation {
+            to { width: 100%; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = notificationStyles;
+    document.head.appendChild(style);
+}
+
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+        <button class="notification-close">×</button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    const autoRemove = setTimeout(() => {
+        if (notification.parentNode) {
+            notification.remove();
+        }
+    }, 5000);
+    
+    // Manual close
+    notification.querySelector('.notification-close').addEventListener('click', () => {
+        clearTimeout(autoRemove);
+        notification.remove();
+    });
+}
+
+// Enhanced scroll navbar
+function initScrollNavbar() {
+    const navbar = document.querySelector('.navbar');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 100) {
+            navbar.classList.add('scrolled');
+            
+            // Hide/show navbar based on scroll direction
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+        } else {
+            navbar.classList.remove('scrolled');
+            navbar.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollY = currentScrollY;
+    });
+}
+
+// Initialize enhanced navbar
+document.addEventListener('DOMContentLoaded', function() {
+    initScrollNavbar();
+});
+
+// Project demo functionality
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('demo-btn') || e.target.parentElement.classList.contains('demo-btn')) {
+        const projectCard = e.target.closest('.project-card');
+        const projectTitle = projectCard.querySelector('.project-title').textContent;
+        showProjectDemo(projectTitle);
+    }
+    
+    if (e.target.classList.contains('code-btn') || e.target.parentElement.classList.contains('code-btn')) {
+        showNotification('Code source disponible sur GitHub', 'info');
+    }
+});
+
+function showProjectDemo(projectTitle) {
+    const demos = {
+        'IA_PRO': 'Démonstration interactive de l\'assistant IA pour l\'analyse documentaire avec RAG',
+        'Mini-GPT PyTorch': 'Visualisation de l\'architecture transformer et du processus d\'entraînement',
+        'DocuAI': 'Interface de traitement NLP avec extraction d\'entités nommées en temps réel',
+        'E-commerce Analyzer': 'Dashboard interactif avec visualisations et prédictions de ventes'
+    };
+    
+    const demoContent = demos[projectTitle] || 'Démonstration interactive disponible';
+    showNotification(`🎮 Démo ${projectTitle}: ${demoContent}`, 'info');
+}
         }
     `;
     
