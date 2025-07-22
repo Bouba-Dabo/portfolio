@@ -877,26 +877,133 @@ function updatePipeline() {
 
 function initializeChartControls() {
     const chartButtons = document.querySelectorAll('.chart-btn');
+    const canvas = document.getElementById('trendChart');
+    
+    if (!canvas) {
+        console.warn('⚠️ Chart canvas not found');
+        return;
+    }
+
+    // Chart configuration
+    let chartInstance = null;
+    
+    const chartData = {
+        accuracy: {
+            labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'],
+            data: [85.2, 87.8, 91.3, 93.7, 95.1, 97.8],
+            color: '#00d4ff',
+            label: 'Accuracy (%)'
+        },
+        loss: {
+            labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'],
+            data: [0.45, 0.38, 0.29, 0.22, 0.18, 0.12],
+            color: '#ff006b',
+            label: 'Loss'
+        },
+        performance: {
+            labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun'],
+            data: [78.5, 82.3, 86.7, 89.2, 92.6, 96.4],
+            color: '#9d4edd',
+            label: 'Performance (%)'
+        }
+    };
+
+    function createChart(type) {
+        const ctx = canvas.getContext('2d');
+        const data = chartData[type];
+        
+        // Destroy existing chart
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
+        
+        chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: data.label,
+                    data: data.data,
+                    borderColor: data.color,
+                    backgroundColor: data.color + '20',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: data.color,
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.8)',
+                            font: {
+                                family: 'Rajdhani',
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.8)',
+                            font: {
+                                family: 'Rajdhani',
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        hoverBackgroundColor: data.color
+                    }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutCubic'
+                }
+            }
+        });
+    }
     
     chartButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             chartButtons.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             
-            // Simulate chart data change
-            updateChartDisplay(this.textContent.toLowerCase());
+            const chartType = this.dataset.chart;
+            createChart(chartType);
         });
     });
     
-    // Set first button as active
+    // Initialize with accuracy chart
     if (chartButtons.length > 0) {
         chartButtons[0].classList.add('active');
+        createChart('accuracy');
     }
 }
 
 function updateChartDisplay(chartType) {
-    console.log(`Updating chart display for: ${chartType}`);
-    // This would integrate with Chart.js or similar library
+    console.log(`✨ Chart updated to: ${chartType}`);
 }
 
 // Main initialization function for data visualizations
