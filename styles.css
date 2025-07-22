@@ -1611,12 +1611,7 @@ body.loading {
     padding: 30px;
 }
 
-.project-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
+/* DUPLICATE SELECTORS REMOVED - KEEPING ONLY ORIGINAL DEFINITIONS */
 
 .project-badge {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -1636,14 +1631,7 @@ body.loading {
     margin: 20px 0;
 }
 
-.tech-tag {
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    transition: all 0.3s ease;
-}
+/* DUPLICATE .tech-tag SELECTOR REMOVED */
 
 .tech-tag.python {
     background: rgba(52, 152, 219, 0.2);
