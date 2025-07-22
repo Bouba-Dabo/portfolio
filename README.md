@@ -38,7 +38,7 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - 🎓 **Formation** : Étudiant-ingénieur en Big Data & IA à ESIGELEC
 - 🏆 **Parcours exceptionnel** : Double diplôme MPI à l'UCAD + Classes préparatoires
 - 📍 **Localisation** : Rouen (études) • Saint-Denis Paris (résidence)
-- 🚀 **Objectif** : Stage en Data Science/IA (Février 2026)
+- 🚀 **Objectif** : Temps plein jusqu'en Septembre 2025
 - 📧 **Contact** : dabom372@gmail.com
 
 ## 💼 Projets présentés
@@ -185,7 +185,7 @@ Optimisé pour tous les appareils :
 **Boubacar DABO**
 - 📧 **Email** : dabom372@gmail.com
 - 📍 **Localisation** : Rouen • Saint-Denis Paris
-- 🎯 **Objectif** : Stage Data Science/IA (Février 2026)
+- 🎯 **Objectif** : Temps plein jusqu'en Septembre 2025
 - 🔗 **GitHub** : [Bouba-Dabo](https://github.com/Bouba-Dabo)
 
 ## 📄 Licence
