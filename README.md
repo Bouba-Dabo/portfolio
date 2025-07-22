@@ -38,7 +38,7 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - 🎓 **Formation** : Étudiant-ingénieur en Big Data & IA à ESIGELEC
 - 🏆 **Parcours exceptionnel** : Double diplôme MPI à l'UCAD + Classes préparatoires
 - 📍 **Localisation** : Rouen (études) • Saint-Denis Paris (résidence)
-- 🚀 **Objectif** : Disponible à partir de Février 2026
+- 🚀 **Objectif** : Stage à partir de Février 2026 (CDI possible)
 - 📧 **Contact** : dabom372@gmail.com
 - 💼 **LinkedIn** : [boubacar-dabo-94206a291](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
 
@@ -66,15 +66,25 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - Deep Learning, Neural Networks
 - Computer Vision, NLP
 
+### Big Data & Analytics
+- Apache Spark, Hadoop, HDFS
+- Data Engineering, ETL Pipelines
+- Distributed Computing
+
 ### Data Science
 - Pandas, NumPy, Plotly, Streamlit
 - Data Analysis, Visualization
 - Business Intelligence
 
+### Bases de Données & Modélisation
+- SQL (PostgreSQL, MySQL)
+- Modélisation de bases de données
+- Data Warehousing
+
 ### Développement
-- Python, FastAPI, Git/GitHub
-- Docker, Cloud Computing
-- API Development
+- Python, Java, FastAPI
+- Git/GitHub, Docker
+- Cloud Computing, API Development
 
 ## 📁 Structure du projet
 
@@ -193,7 +203,7 @@ Optimisé pour tous les appareils :
 **Boubacar DABO**
 - 📧 **Email** : dabom372@gmail.com
 - 📍 **Localisation** : Rouen • Saint-Denis Paris
-- 🎯 **Objectif** : Disponible à partir de Février 2026
+- 🎯 **Objectif** : Stage à partir de Février 2026 (CDI possible)
 - 🔗 **GitHub** : [Bouba-Dabo](https://github.com/Bouba-Dabo)
 - 💼 **LinkedIn** : [boubacar-dabo-94206a291](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
 
