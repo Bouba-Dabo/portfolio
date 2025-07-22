@@ -42,6 +42,10 @@ body {
     overflow-x: hidden;
 }
 
+body.loading {
+    overflow: hidden;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -1691,8 +1695,655 @@ body {
 }
 
 /* ========================
-   MOBILE OPTIMIZATIONS
+   ADVANCED ANIMATIONS & EFFECTS
    ======================== */
+
+/* Typewriter Effect */
+.typewriter-effect {
+    overflow: hidden;
+    border-right: 2px solid var(--primary-color);
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3s steps(30, end), blink-caret 1s step-end infinite;
+}
+
+.typewriter-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--primary-color);
+    margin-left: 2px;
+    animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* AI Particles Animation */
+.ai-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float-particle 8s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+    width: 4px;
+    height: 4px;
+    left: 10%;
+    animation-delay: -1s;
+    animation-duration: 6s;
+}
+
+.particle:nth-child(2) {
+    width: 6px;
+    height: 6px;
+    left: 20%;
+    animation-delay: -2s;
+    animation-duration: 8s;
+}
+
+.particle:nth-child(3) {
+    width: 3px;
+    height: 3px;
+    left: 30%;
+    animation-delay: -3s;
+    animation-duration: 7s;
+}
+
+.particle:nth-child(4) {
+    width: 5px;
+    height: 5px;
+    left: 40%;
+    animation-delay: -4s;
+    animation-duration: 9s;
+}
+
+.particle:nth-child(5) {
+    width: 4px;
+    height: 4px;
+    left: 50%;
+    animation-delay: -5s;
+    animation-duration: 6s;
+}
+
+.particle:nth-child(6) {
+    width: 7px;
+    height: 7px;
+    left: 60%;
+    animation-delay: -1.5s;
+    animation-duration: 8s;
+}
+
+.particle:nth-child(7) {
+    width: 3px;
+    height: 3px;
+    left: 70%;
+    animation-delay: -2.5s;
+    animation-duration: 7s;
+}
+
+.particle:nth-child(8) {
+    width: 5px;
+    height: 5px;
+    left: 80%;
+    animation-delay: -3.5s;
+    animation-duration: 9s;
+}
+
+.particle:nth-child(9) {
+    width: 4px;
+    height: 4px;
+    left: 90%;
+    animation-delay: -4.5s;
+    animation-duration: 6s;
+}
+
+.particle:nth-child(10) {
+    width: 6px;
+    height: 6px;
+    left: 95%;
+    animation-delay: -5.5s;
+    animation-duration: 8s;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-100px) translateX(20px) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* Neural Grid Background */
+.neural-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+}
+
+@keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Enhanced Button Hover Effects (Enhanced Version) */
+.btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.btn-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    transition: all 0.6s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.btn-enhanced:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-enhanced:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(0, 212, 255, 0.3),
+        0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+/* Ripple Effect for Buttons */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Advanced Loading Screen */
+.advanced-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loader-content {
+    text-align: center;
+    position: relative;
+}
+
+.neural-loader {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 40px;
+    position: relative;
+}
+
+.neural-center {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px var(--primary-color);
+    animation: pulse-center 2s ease-in-out infinite;
+}
+
+@keyframes pulse-center {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1; 
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8; 
+    }
+}
+
+.neural-node {
+    width: 8px;
+    height: 8px;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    position: absolute;
+    animation: orbit 3s linear infinite;
+}
+
+.neural-node:nth-child(2) { animation-delay: -0.5s; }
+.neural-node:nth-child(3) { animation-delay: -1s; }
+.neural-node:nth-child(4) { animation-delay: -1.5s; }
+.neural-node:nth-child(5) { animation-delay: -2s; }
+.neural-node:nth-child(6) { animation-delay: -2.5s; }
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg) translateX(50px) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(50px) rotate(-360deg);
+    }
+}
+
+.loader-text {
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    animation: text-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+    from { 
+        text-shadow: 0 0 5px var(--primary-color);
+    }
+    to { 
+        text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
+    }
+}
+
+.loader-progress {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.loader-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    animation: loading-progress 3s ease-in-out forwards;
+}
+
+@keyframes loading-progress {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* Scroll Reveal Animations */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scroll-reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.scroll-reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Enhanced Glitch Effect */
+.glitch-enhanced {
+    position: relative;
+    color: var(--text-primary);
+    font-size: 4rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    animation: glitch-skew 1s infinite linear alternate-reverse;
+}
+
+.glitch-enhanced::before,
+.glitch-enhanced::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-enhanced::before {
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+    color: var(--primary-color);
+    z-index: -1;
+}
+
+.glitch-enhanced::after {
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+    color: var(--secondary-color);
+    z-index: -2;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(42px, 9999px, 44px, 0);
+        transform: skew(0.85deg);
+    }
+    5% {
+        clip: rect(12px, 9999px, 59px, 0);
+        transform: skew(0.4deg);
+    }
+    10% {
+        clip: rect(48px, 9999px, 29px, 0);
+        transform: skew(0.1deg);
+    }
+    15% {
+        clip: rect(42px, 9999px, 73px, 0);
+        transform: skew(0.5deg);
+    }
+    20% {
+        clip: rect(63px, 9999px, 27px, 0);
+        transform: skew(0.8deg);
+    }
+    25% {
+        clip: rect(34px, 9999px, 55px, 0);
+        transform: skew(0.2deg);
+    }
+    30% {
+        clip: rect(86px, 9999px, 73px, 0);
+        transform: skew(0.9deg);
+    }
+    35% {
+        clip: rect(20px, 9999px, 20px, 0);
+        transform: skew(0.3deg);
+    }
+    40% {
+        clip: rect(26px, 9999px, 60px, 0);
+        transform: skew(0.7deg);
+    }
+    45% {
+        clip: rect(59px, 9999px, 83px, 0);
+        transform: skew(0.1deg);
+    }
+    50% {
+        clip: rect(67px, 9999px, 50px, 0);
+        transform: skew(0.6deg);
+    }
+    55% {
+        clip: rect(31px, 9999px, 45px, 0);
+        transform: skew(0.4deg);
+    }
+    60% {
+        clip: rect(51px, 9999px, 76px, 0);
+        transform: skew(0.8deg);
+    }
+    65% {
+        clip: rect(38px, 9999px, 28px, 0);
+        transform: skew(0.2deg);
+    }
+    70% {
+        clip: rect(69px, 9999px, 66px, 0);
+        transform: skew(0.9deg);
+    }
+    75% {
+        clip: rect(43px, 9999px, 81px, 0);
+        transform: skew(0.3deg);
+    }
+    80% {
+        clip: rect(56px, 9999px, 35px, 0);
+        transform: skew(0.7deg);
+    }
+    85% {
+        clip: rect(71px, 9999px, 88px, 0);
+        transform: skew(0.1deg);
+    }
+    90% {
+        clip: rect(25px, 9999px, 52px, 0);
+        transform: skew(0.5deg);
+    }
+    95% {
+        clip: rect(61px, 9999px, 37px, 0);
+        transform: skew(0.8deg);
+    }
+    100% {
+        clip: rect(14px, 9999px, 75px, 0);
+        transform: skew(0.4deg);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(65px, 9999px, 99px, 0);
+        transform: skew(0.8deg);
+    }
+    5% {
+        clip: rect(52px, 9999px, 33px, 0);
+        transform: skew(0.2deg);
+    }
+    10% {
+        clip: rect(79px, 9999px, 85px, 0);
+        transform: skew(0.6deg);
+    }
+    15% {
+        clip: rect(31px, 9999px, 67px, 0);
+        transform: skew(0.9deg);
+    }
+    20% {
+        clip: rect(88px, 9999px, 42px, 0);
+        transform: skew(0.3deg);
+    }
+    25% {
+        clip: rect(46px, 9999px, 78px, 0);
+        transform: skew(0.7deg);
+    }
+    30% {
+        clip: rect(21px, 9999px, 54px, 0);
+        transform: skew(0.1deg);
+    }
+    35% {
+        clip: rect(73px, 9999px, 39px, 0);
+        transform: skew(0.5deg);
+    }
+    40% {
+        clip: rect(57px, 9999px, 92px, 0);
+        transform: skew(0.8deg);
+    }
+    45% {
+        clip: rect(34px, 9999px, 71px, 0);
+        transform: skew(0.4deg);
+    }
+    50% {
+        clip: rect(82px, 9999px, 48px, 0);
+        transform: skew(0.2deg);
+    }
+    55% {
+        clip: rect(29px, 9999px, 86px, 0);
+        transform: skew(0.6deg);
+    }
+    60% {
+        clip: rect(64px, 9999px, 25px, 0);
+        transform: skew(0.9deg);
+    }
+    65% {
+        clip: rect(41px, 9999px, 69px, 0);
+        transform: skew(0.3deg);
+    }
+    70% {
+        clip: rect(76px, 9999px, 53px, 0);
+        transform: skew(0.7deg);
+    }
+    75% {
+        clip: rect(18px, 9999px, 91px, 0);
+        transform: skew(0.1deg);
+    }
+    80% {
+        clip: rect(68px, 9999px, 36px, 0);
+        transform: skew(0.5deg);
+    }
+    85% {
+        clip: rect(45px, 9999px, 84px, 0);
+        transform: skew(0.8deg);
+    }
+    90% {
+        clip: rect(33px, 9999px, 62px, 0);
+        transform: skew(0.4deg);
+    }
+    95% {
+        clip: rect(87px, 9999px, 19px, 0);
+        transform: skew(0.2deg);
+    }
+    100% {
+        clip: rect(55px, 9999px, 77px, 0);
+        transform: skew(0.6deg);
+    }
+}
+
+@keyframes glitch-skew {
+    0% {
+        transform: skew(0deg);
+    }
+    10% {
+        transform: skew(2deg);
+    }
+    20% {
+        transform: skew(-1deg);
+    }
+    30% {
+        transform: skew(1deg);
+    }
+    40% {
+        transform: skew(-2deg);
+    }
+    50% {
+        transform: skew(1deg);
+    }
+    60% {
+        transform: skew(-1deg);
+    }
+    70% {
+        transform: skew(2deg);
+    }
+    80% {
+        transform: skew(-1deg);
+    }
+    90% {
+        transform: skew(1deg);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
+
+/* Mobile Optimizations for Animations */
+@media (max-width: 768px) {
+    .typewriter-effect {
+        font-size: 1.5rem;
+    }
+    
+    .particle {
+        display: none; /* Disable particles on mobile for performance */
+    }
+    
+    .neural-grid {
+        opacity: 0.05;
+    }
+    
+    .neural-loader {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .glitch-enhanced {
+        font-size: 2.5rem;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .typewriter-effect,
+    .particle,
+    .neural-grid,
+    .glitch-enhanced,
+    .btn::before {
+        animation: none;
+    }
+    
+    .scroll-reveal {
+        transition: opacity 0.3s ease;
+    }
+}
 
 @media (max-width: 768px) {
     .stage-section {
