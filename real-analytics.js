@@ -231,7 +231,7 @@ class PortfolioAnalytics {
 const ANALYTICS_CONFIG = {
     // À changer selon vos besoins
     defaultMode: 'production', // 'demo' pour les présentations, 'production' pour le vrai site
-    measurementId: 'G-497994538', // ⚠️ VOTRE ID - À ajuster si c'est pas le bon format
+    measurementId: 'G-VP0981J1ML', // ✅ Votre ID GA4 correct
     updateInterval: 30000, // 30 secondes
     enableCustomEvents: true
 };
