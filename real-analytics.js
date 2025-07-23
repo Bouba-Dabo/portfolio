@@ -5,7 +5,7 @@
 class PortfolioAnalytics {
     constructor() {
         this.mode = 'production'; // 'demo' ou 'production'
-        this.measurementId = 'G-XXXXXXXXXX'; // À remplacer par votre ID GA4
+        this.measurementId = 'G-VP0981J1ML'; // Votre ID GA4 réel
         this.isGALoaded = false;
         this.demoData = {
             totalViews: 1247,
