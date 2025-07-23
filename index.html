@@ -1416,97 +1416,294 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-text">Contact</span>
-                <span class="title-underline"></span>
+    <!-- Analytics & Contact Section -->
+    <section id="analytics-contact" class="visitors-analytics">
+        <div class="container visitors-container">
+            <h2 class="section-title visitors-header">
+                <span class="visitors-title">Analytics des Visiteurs</span>
+                <p class="visitors-subtitle">Découvrez qui visite mon portfolio en temps réel</p>
+                <div class="visitors-live-indicator">
+                    <span class="live-dot"></span>
+                    En direct
+                </div>
             </h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Créons ensemble l'avenir de l'IA</h3>
-                    <p>
-                        Intéressé par une collaboration ou un stage en Data Science / IA ? 
-                        N'hésitez pas à me contacter pour discuter de projets innovants.
-                    </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">Email</span>
-                                <span class="contact-value">dabom372@gmail.com</span>
-                            </div>
+            
+            <div class="visitors-analytics-grid">
+                <!-- Left Stats Column -->
+                <div class="stats-column">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">Localisation</span>
-                                <span class="contact-value">Rouen (études) • Saint-Denis Paris</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">LinkedIn</span>
-                                <span class="contact-value">Boubacar Dabo</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <span class="contact-label">Disponibilité</span>
-                                <span class="contact-value">Stage Février 2026 (CDI possible)</span>
-                            </div>
+                        <span class="visitor-stat-number" id="total-views">1,247</span>
+                        <div class="visitor-stat-label">Vues totales</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +12% cette semaine
                         </div>
                     </div>
-                    <div class="social-links">
-                        <a href="https://github.com/Bouba-Dabo" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/boubacar-dabo-94206a291/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:dabom372@gmail.com" class="social-link" title="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="visitor-stat-number" id="unique-visitors">892</span>
+                        <div class="visitor-stat-label">Visiteurs uniques</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +8% ce mois
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <span class="visitor-stat-number" id="avg-time">3:42</span>
+                        <div class="visitor-stat-label">Temps moyen</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +15s
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form class="form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Nom complet</label>
-                            <div class="form-line"></div>
+                
+                <!-- Central Visualization -->
+                <div class="visitors-visualization">
+                    <div class="viz-header">
+                        <div class="current-visitors" id="current-count">7</div>
+                        <div class="viz-label">Visiteurs actuellement en ligne</div>
+                    </div>
+                    
+                    <div class="visitor-globe">
+                        <div class="globe-pulse"></div>
+                        <div class="globe-pulse"></div>
+                        <div class="globe-pulse"></div>
+                        <div class="globe-center">
+                            <i class="fas fa-globe"></i>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">Adresse email</label>
-                            <div class="form-line"></div>
+                    </div>
+                    
+                    <div class="activity-stream" id="activity-stream">
+                        <div class="activity-item">
+                            <span class="activity-flag">🇫🇷</span>
+                            <div class="activity-info">
+                                <div class="activity-location">Paris, France</div>
+                                <div class="activity-time">Il y a 2 minutes</div>
+                                <div class="activity-page">Page: Projets</div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" required>
-                            <label for="subject">Sujet</label>
-                            <div class="form-line"></div>
+                        <div class="activity-item">
+                            <span class="activity-flag">🇺🇸</span>
+                            <div class="activity-info">
+                                <div class="activity-location">New York, USA</div>
+                                <div class="activity-time">Il y a 5 minutes</div>
+                                <div class="activity-page">Page: Accueil</div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <label for="message">Message</label>
-                            <div class="form-line"></div>
+                        <div class="activity-item">
+                            <span class="activity-flag">🇩🇪</span>
+                            <div class="activity-info">
+                                <div class="activity-location">Berlin, Allemagne</div>
+                                <div class="activity-time">Il y a 8 minutes</div>
+                                <div class="activity-page">Page: Compétences</div>
+                            </div>
                         </div>
-                        <button type="submit" class="submit-btn">
-                            <span>Envoyer le message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                        <div class="activity-item">
+                            <span class="activity-flag">🇨🇦</span>
+                            <div class="activity-info">
+                                <div class="activity-location">Toronto, Canada</div>
+                                <div class="activity-time">Il y a 12 minutes</div>
+                                <div class="activity-page">Page: À propos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Stats Column -->
+                <div class="stats-column">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <span class="visitor-stat-number" id="countries">42</span>
+                        <div class="visitor-stat-label">Pays différents</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +3 nouveaux
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <span class="visitor-stat-number" id="mobile-percent">68%</span>
+                        <div class="visitor-stat-label">Trafic mobile</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +5%
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-share"></i>
+                        </div>
+                        <span class="visitor-stat-number" id="referrals">156</span>
+                        <div class="visitor-stat-label">Partages sociaux</div>
+                        <div class="stat-change positive">
+                            <i class="fas fa-arrow-up"></i>
+                            +23 aujourd'hui
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- World Map Visualization -->
+            <div class="world-map-container">
+                <div class="map-header">
+                    <h3 class="map-title">Répartition Géographique des Visiteurs</h3>
+                    <p class="map-subtitle">Localisation en temps réel des connexions</p>
+                </div>
+                
+                <div class="world-map" id="world-map">
+                    <!-- Visitor dots will be positioned dynamically -->
+                    <div class="visitor-dot" style="top: 45%; left: 25%;" title="Paris, France"></div>
+                    <div class="visitor-dot" style="top: 40%; left: 75%;" title="New York, USA"></div>
+                    <div class="visitor-dot" style="top: 35%; left: 55%;" title="Berlin, Allemagne"></div>
+                    <div class="visitor-dot" style="top: 30%; left: 20%;" title="Londres, UK"></div>
+                    <div class="visitor-dot" style="top: 25%; left: 80%;" title="Tokyo, Japon"></div>
+                    <div class="visitor-dot" style="top: 60%; left: 15%;" title="Madrid, Espagne"></div>
+                    <div class="visitor-dot" style="top: 35%; left: 30%;" title="Rome, Italie"></div>
+                </div>
+                
+                <div class="country-stats">
+                    <div class="country-item">
+                        <span class="country-flag">🇫🇷</span>
+                        <div class="country-info">
+                            <div class="country-name">France</div>
+                            <div class="country-visitors">342 visiteurs</div>
+                            <div class="country-bar">
+                                <div class="country-progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="country-item">
+                        <span class="country-flag">🇺🇸</span>
+                        <div class="country-info">
+                            <div class="country-name">États-Unis</div>
+                            <div class="country-visitors">198 visiteurs</div>
+                            <div class="country-bar">
+                                <div class="country-progress" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="country-item">
+                        <span class="country-flag">🇩🇪</span>
+                        <div class="country-info">
+                            <div class="country-name">Allemagne</div>
+                            <div class="country-visitors">124 visiteurs</div>
+                            <div class="country-bar">
+                                <div class="country-progress" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="country-item">
+                        <span class="country-flag">🇬🇧</span>
+                        <div class="country-info">
+                            <div class="country-name">Royaume-Uni</div>
+                            <div class="country-visitors">89 visiteurs</div>
+                            <div class="country-bar">
+                                <div class="country-progress" style="width: 30%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="country-item">
+                        <span class="country-flag">🇨🇦</span>
+                        <div class="country-info">
+                            <div class="country-name">Canada</div>
+                            <div class="country-visitors">67 visiteurs</div>
+                            <div class="country-bar">
+                                <div class="country-progress" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="country-item">
+                        <span class="country-flag">🇯🇵</span>
+                        <div class="country-info">
+                            <div class="country-name">Japon</div>
+                            <div class="country-visitors">45 visiteurs</div>
+                            <div class="country-bar">
+                                <div class="country-progress" style="width: 20%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Information Section -->
+            <div class="contact-info-section" id="contact">
+                <h3 class="contact-title">Créons ensemble l'avenir de l'IA</h3>
+                <p class="contact-description">
+                    Intéressé par une collaboration ou un stage en Data Science / IA ? 
+                    N'hésitez pas à me contacter pour discuter de projets innovants.
+                </p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">dabom372@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Localisation</span>
+                            <span class="contact-value">Rouen (études) • Saint-Denis Paris</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">Boubacar Dabo</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <span class="contact-label">Disponibilité</span>
+                            <span class="contact-value">Stage Février 2026 (CDI possible)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://github.com/Bouba-Dabo" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/boubacar-dabo-94206a291/" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:dabom372@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1611,6 +1808,7 @@
     <!-- Analytics & PWA -->
     <script src="analytics.js"></script>
     <script src="i18n.js"></script>
+    <script src="visitor-analytics.js"></script>
     
     <!-- Main Script -->
     <script src="script.js"></script>
