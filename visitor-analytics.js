@@ -247,7 +247,7 @@ class VisitorAnalytics {
             document.body.appendChild(notification);
         }
 
-        notification.innerHTML = `<i class="fas fa-bell"></i>${message}`;
+        notification.innerHTML = `<i class="fas fa-bell"></i>${message} <small>(Démo)</small>`;
         notification.classList.add('show');
 
         // Masquer après 3 secondes
