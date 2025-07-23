@@ -1102,11 +1102,32 @@ function initializeChatbot() {
             response: `🚀 **Recherche de stage :**
 
 • **Période :** À partir de Février 2026
-• **Durée :** Stage longue durée (CDI possible)
+• **Durée :** Stage longue durée (6 mois recommandé)
+• **Évolution :** Possibilité de signer un CDI après la fin du stage
 • **Domaines :** Data Science, Intelligence Artificielle, Big Data
 • **Localisation :** Flexible (Rouen, Paris, France)
 
-💼 **Profil recherché :** Projets innovants en IA/ML, environnement stimulant, équipe passionnée !`
+💼 **Objectif :** Intégration progressive dans l'équipe avec perspective d'embauche en CDI pour continuer les projets développés pendant le stage.
+
+🎯 **Profil recherché :** Projets innovants en IA/ML, environnement stimulant, équipe passionnée !`
+        },
+        'cdi': {
+            keywords: ['cdi', 'embauche', 'contrat', 'permanent', 'long terme', 'évolution'],
+            response: `💼 **Évolution vers un CDI :**
+
+🎯 **Stratégie de carrière :**
+• **Stage initial :** Février 2026 (6 mois idéalement)
+• **Transition naturelle :** Possibilité de CDI à la fin du stage
+• **Continuité projet :** Poursuivre et approfondir les projets initiés
+• **Montée en compétences :** Évolution progressive des responsabilités
+
+✨ **Avantages pour l'entreprise :**
+• Connaissance approfondie de l'équipe et des projets
+• Période d'adaptation déjà effectuée
+• ROI optimisé sur la formation et l'intégration
+• Engagement long terme mutuel
+
+🚀 **Vision :** Contribuer durablement à l'innovation IA de l'entreprise !`
         },
         'experience': {
             keywords: ['expérience', 'background', 'historique', 'parcours professionnel'],
