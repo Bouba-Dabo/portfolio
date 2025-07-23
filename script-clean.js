@@ -207,7 +207,7 @@ function initAdvancedLoadingScreen() {
         loader.style.opacity = '0';
         loader.style.visibility = 'hidden';
         document.body.style.overflow = 'visible';
-    }, 3000);
+    }, 800); // Réduit de 3000ms à 800ms
 }
 
 class AdvancedAnimations {
@@ -465,11 +465,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize advanced loading screen
     initAdvancedLoadingScreen();
     
-    // Initialize advanced animations after a short delay
-    setTimeout(() => {
-        new AdvancedAnimations();
-        new PerformanceMonitor();
-    }, 1000);
+    // Initialize advanced animations immediately
+    const animations = new AdvancedAnimations();
+    const performanceMonitor = new PerformanceMonitor();
     
     // Initialize AOS (if available)
     if (typeof AOS !== 'undefined') {

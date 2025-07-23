@@ -71,6 +71,13 @@ body.loading {
     padding: 1rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    gap: 2rem;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav-logo {

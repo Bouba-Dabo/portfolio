@@ -1,0 +1,114 @@
+{
+  "name": "Boubacar DABO - Portfolio IA & Data Science",
+  "short_name": "Portfolio Bouba",
+  "description": "Portfolio professionnel de Boubacar DABO, étudiant-ingénieur en Big Data & Intelligence Artificielle à ESIGELEC",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "categories": ["portfolio", "technology", "ai", "data-science"],
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "screenshot-mobile.png",
+      "sizes": "640x1136",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mes Projets",
+      "short_name": "Projets",
+      "description": "Voir mes projets en IA et Data Science",
+      "url": "/#projets",
+      "icons": [
+        {
+          "src": "icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Skills Matching",
+      "short_name": "Matching",
+      "description": "Analyser la compatibilité des compétences",
+      "url": "/#skills-matching",
+      "icons": [
+        {
+          "src": "icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Me contacter pour un stage ou un projet",
+      "url": "/#contact",
+      "icons": [
+        {
+          "src": "icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
