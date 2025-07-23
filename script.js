@@ -656,6 +656,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize data visualizations
     initializeDataVisualizations();
     
+    // Initialize skills matching
+    initializeSkillsMatching();
+    
     // Initialize advanced loading screen
     initAdvancedLoadingScreen();
     
@@ -1299,6 +1302,553 @@ Reformulez votre question ou utilisez les boutons rapides ! 😊`;
     }
 
     console.log('🤖 Chatbot initialized successfully');
+}
+
+// ========================
+// SKILLS MATCHING FUNCTIONALITY
+// ========================
+
+function initializeSkillsMatching() {
+    const form = document.getElementById('skills-matching-form');
+    const resultsSection = document.getElementById('matching-results');
+    
+    if (!form || !resultsSection) {
+        console.warn('⚠️ Skills matching elements not found');
+        return;
+    }
+    
+    // Comprehensive skills database
+    const skillsDatabase = {
+        // Core programming and tools
+        'python': { level: 95, category: 'programming', aliases: ['py'] },
+        'java': { level: 85, category: 'programming', aliases: [] },
+        'sql': { level: 90, category: 'database', aliases: ['mysql', 'postgresql', 'sqlite'] },
+        'javascript': { level: 80, category: 'programming', aliases: ['js', 'node.js', 'nodejs'] },
+        'git': { level: 88, category: 'tools', aliases: ['github', 'version control'] },
+        'docker': { level: 75, category: 'tools', aliases: ['containerization'] },
+        
+        // AI/ML frameworks
+        'pytorch': { level: 90, category: 'ai-ml', aliases: ['torch'] },
+        'tensorflow': { level: 85, category: 'ai-ml', aliases: ['tf'] },
+        'scikit-learn': { level: 95, category: 'ai-ml', aliases: ['sklearn', 'scikit'] },
+        'keras': { level: 80, category: 'ai-ml', aliases: [] },
+        'huggingface': { level: 85, category: 'ai-ml', aliases: ['transformers', 'hf'] },
+        'deep learning': { level: 88, category: 'ai-ml', aliases: ['neural networks', 'nn'] },
+        'machine learning': { level: 90, category: 'ai-ml', aliases: ['ml', 'apprentissage automatique'] },
+        
+        // Big Data
+        'apache spark': { level: 82, category: 'big-data', aliases: ['spark', 'pyspark', 'sparck'] },
+        'hadoop': { level: 78, category: 'big-data', aliases: ['hdfs', 'hadoop hdfs'] },
+        'kafka': { level: 70, category: 'big-data', aliases: ['apache kafka'] },
+        'elasticsearch': { level: 72, category: 'big-data', aliases: ['elastic'] },
+        
+        // NLP
+        'spacy': { level: 92, category: 'nlp', aliases: [] },
+        'nltk': { level: 88, category: 'nlp', aliases: [] },
+        'transformers': { level: 85, category: 'nlp', aliases: ['bert', 'gpt', 'llm'] },
+        'langchain': { level: 80, category: 'nlp', aliases: [] },
+        
+        // Data Science
+        'pandas': { level: 93, category: 'data-science', aliases: [] },
+        'numpy': { level: 91, category: 'data-science', aliases: [] },
+        'matplotlib': { level: 87, category: 'data-viz', aliases: [] },
+        'plotly': { level: 86, category: 'data-viz', aliases: [] },
+        'streamlit': { level: 89, category: 'data-viz', aliases: [] },
+        'power bi': { level: 85, category: 'business-intelligence', aliases: ['powerbi', 'microsoft power bi'] },
+        'tableau': { level: 70, category: 'business-intelligence', aliases: [] },
+        
+        // Cloud and DevOps
+        'aws': { level: 65, category: 'cloud', aliases: ['amazon web services'] },
+        'azure': { level: 60, category: 'cloud', aliases: ['microsoft azure'] },
+        'gcp': { level: 58, category: 'cloud', aliases: ['google cloud'] },
+        'kubernetes': { level: 60, category: 'devops', aliases: ['k8s'] },
+        
+        // Web development
+        'fastapi': { level: 82, category: 'web', aliases: [] },
+        'flask': { level: 78, category: 'web', aliases: [] },
+        'django': { level: 70, category: 'web', aliases: [] },
+        'react': { level: 75, category: 'web', aliases: ['reactjs'] },
+        'html': { level: 85, category: 'web', aliases: ['html5'] },
+        'css': { level: 83, category: 'web', aliases: ['css3'] }
+    };
+    
+    // Projects database with associated technologies
+    const projectsDatabase = {
+        'IA_PRO': {
+            title: 'IA_PRO - Assistant Documentaire',
+            description: 'Assistant IA avec architecture RAG pour l\'analyse documentaire intelligente',
+            technologies: ['python', 'transformers', 'langchain', 'streamlit', 'nlp'],
+            domain: ['ai', 'nlp', 'data-science'],
+            relevance: 95
+        },
+        'Mini-GPT PyTorch': {
+            title: 'Mini-GPT PyTorch',
+            description: 'Implémentation complète d\'un transformer GPT from scratch avec PyTorch',
+            technologies: ['python', 'pytorch', 'transformers', 'deep learning'],
+            domain: ['ai', 'machine-learning', 'nlp'],
+            relevance: 90
+        },
+        'DocuAI': {
+            title: 'DocuAI - Application NLP',
+            description: 'Application NLP avec extraction d\'entités et interface Streamlit',
+            technologies: ['python', 'spacy', 'nltk', 'streamlit', 'nlp'],
+            domain: ['nlp', 'data-science'],
+            relevance: 88
+        },
+        'E-commerce Analyzer': {
+            title: 'E-commerce Analytics Dashboard',
+            description: 'Dashboard interactif avec prédictions ML et visualisations avancées',
+            technologies: ['python', 'pandas', 'plotly', 'scikit-learn', 'streamlit'],
+            domain: ['data-science', 'business-intelligence', 'machine-learning'],
+            relevance: 92
+        },
+        'Classification RFID': {
+            title: 'Classification RFID ML',
+            description: 'Système de classification automatique pour identification RFID',
+            technologies: ['python', 'scikit-learn', 'pandas', 'machine learning'],
+            domain: ['machine-learning', 'data-science'],
+            relevance: 85
+        },
+        'Sentiment Analysis': {
+            title: 'Analyse Sentiment Tweets',
+            description: 'Classification de sentiments sur données Twitter avec techniques NLP',
+            technologies: ['python', 'nltk', 'scikit-learn', 'pandas', 'nlp'],
+            domain: ['nlp', 'machine-learning', 'data-science'],
+            relevance: 87
+        }
+    };
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        analyzeCompatibility();
+    });
+    
+    function analyzeCompatibility() {
+        const formData = new FormData(form);
+        const domain = formData.get('domain');
+        const skillsInput = formData.get('skills');
+        const experienceLevel = formData.get('level');
+        const projectsInput = formData.get('projects');
+        
+        // Parse required skills
+        const requiredSkills = skillsInput
+            ? skillsInput.toLowerCase().split(',').map(s => s.trim()).filter(s => s)
+            : [];
+            
+        // Parse project requirements
+        const projectRequirements = projectsInput
+            ? projectsInput.toLowerCase().split(',').map(s => s.trim()).filter(s => s)
+            : [];
+        
+        // Analyze compatibility
+        const analysis = performSkillsAnalysis(requiredSkills, domain, experienceLevel, projectRequirements);
+        
+        // Display results
+        displayResults(analysis);
+        
+        // Show results section with animation
+        resultsSection.style.display = 'block';
+        resultsSection.classList.add('fade-in-up');
+        
+        // Scroll to results
+        setTimeout(() => {
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+    }
+    
+    function performSkillsAnalysis(requiredSkills, domain, experienceLevel, projectRequirements) {
+        const matchedSkills = [];
+        const missingSkills = [];
+        const bonusSkills = [];
+        const relevantProjects = [];
+        
+        let totalScore = 0;
+        let maxPossibleScore = 0;
+        
+        // Analyze each required skill
+        requiredSkills.forEach(skill => {
+            maxPossibleScore += 100;
+            const matchedSkill = findSkillMatch(skill);
+            
+            if (matchedSkill) {
+                matchedSkills.push({
+                    name: skill,
+                    level: matchedSkill.level,
+                    category: matchedSkill.category
+                });
+                totalScore += matchedSkill.level;
+            } else {
+                missingSkills.push({
+                    name: skill,
+                    suggestion: suggestAlternative(skill)
+                });
+            }
+        });
+        
+        // Add domain-specific bonus skills
+        const domainBonusSkills = getDomainBonusSkills(domain);
+        domainBonusSkills.forEach(skill => {
+            if (!requiredSkills.includes(skill.name.toLowerCase())) {
+                bonusSkills.push(skill);
+            }
+        });
+        
+        // Find relevant projects
+        Object.entries(projectsDatabase).forEach(([key, project]) => {
+            const relevanceScore = calculateProjectRelevance(project, requiredSkills, domain, projectRequirements);
+            if (relevanceScore > 60) {
+                relevantProjects.push({
+                    ...project,
+                    relevanceScore
+                });
+            }
+        });
+        
+        // Sort projects by relevance
+        relevantProjects.sort((a, b) => b.relevanceScore - a.relevanceScore);
+        
+        // Calculate final compatibility score
+        const baseScore = requiredSkills.length > 0 ? (totalScore / maxPossibleScore) * 100 : 85;
+        const domainBonus = getDomainCompatibility(domain);
+        const experienceBonus = getExperienceBonus(experienceLevel);
+        
+        const finalScore = Math.min(95, Math.round(baseScore + domainBonus + experienceBonus));
+        
+        return {
+            score: finalScore,
+            matchedSkills,
+            missingSkills,
+            bonusSkills,
+            relevantProjects,
+            domain,
+            experienceLevel
+        };
+    }
+    
+    function findSkillMatch(skill) {
+        const normalizedSkill = skill.toLowerCase().trim();
+        
+        // Direct match
+        if (skillsDatabase[normalizedSkill]) {
+            return skillsDatabase[normalizedSkill];
+        }
+        
+        // Check aliases
+        for (const [key, data] of Object.entries(skillsDatabase)) {
+            if (data.aliases.includes(normalizedSkill) || key.includes(normalizedSkill)) {
+                return data;
+            }
+        }
+        
+        return null;
+    }
+    
+    function suggestAlternative(skill) {
+        const suggestions = {
+            'react': 'Expérience en JavaScript et développement web',
+            'angular': 'Compétences en JavaScript et développement frontend',
+            'vue': 'Connaissance des frameworks JavaScript',
+            'mongodb': 'Expérience avec bases de données et modélisation',
+            'redis': 'Compétences en systèmes de cache et optimisation'
+        };
+        
+        return suggestions[skill.toLowerCase()] || 'Compétence en développement rapide';
+    }
+    
+    function getDomainBonusSkills(domain) {
+        const domainSkills = {
+            'data-science': [
+                { name: 'Pandas', level: 93, category: 'data-science' },
+                { name: 'NumPy', level: 91, category: 'data-science' },
+                { name: 'Plotly', level: 86, category: 'data-viz' }
+            ],
+            'machine-learning': [
+                { name: 'PyTorch', level: 90, category: 'ai-ml' },
+                { name: 'Scikit-learn', level: 95, category: 'ai-ml' },
+                { name: 'TensorFlow', level: 85, category: 'ai-ml' }
+            ],
+            'ai': [
+                { name: 'Transformers', level: 85, category: 'nlp' },
+                { name: 'LangChain', level: 80, category: 'nlp' },
+                { name: 'PyTorch', level: 90, category: 'ai-ml' }
+            ],
+            'big-data': [
+                { name: 'Apache Spark', level: 82, category: 'big-data' },
+                { name: 'Hadoop HDFS', level: 78, category: 'big-data' },
+                { name: 'SQL', level: 90, category: 'database' }
+            ],
+            'nlp': [
+                { name: 'spaCy', level: 92, category: 'nlp' },
+                { name: 'NLTK', level: 88, category: 'nlp' },
+                { name: 'Transformers', level: 85, category: 'nlp' }
+            ]
+        };
+        
+        return domainSkills[domain] || [];
+    }
+    
+    function calculateProjectRelevance(project, requiredSkills, domain, projectRequirements) {
+        let score = 0;
+        
+        // Check technology overlap
+        const techOverlap = project.technologies.filter(tech => 
+            requiredSkills.some(req => req.includes(tech) || tech.includes(req))
+        );
+        score += (techOverlap.length / Math.max(project.technologies.length, requiredSkills.length)) * 40;
+        
+        // Check domain match
+        if (project.domain.includes(domain)) {
+            score += 30;
+        }
+        
+        // Check project requirements match
+        projectRequirements.forEach(req => {
+            if (project.description.toLowerCase().includes(req) || 
+                project.title.toLowerCase().includes(req)) {
+                score += 15;
+            }
+        });
+        
+        // Base relevance
+        score += (project.relevance / 100) * 30;
+        
+        return Math.min(100, score);
+    }
+    
+    function getDomainCompatibility(domain) {
+        const domainScores = {
+            'data-science': 15,
+            'machine-learning': 12,
+            'ai': 10,
+            'big-data': 8,
+            'nlp': 12,
+            'data-engineering': 6,
+            'business-intelligence': 8
+        };
+        
+        return domainScores[domain] || 0;
+    }
+    
+    function getExperienceBonus(level) {
+        const experienceBonus = {
+            'junior': 5,
+            'intermediate': 0,
+            'senior': -2  // Slightly lower as I'm still a student
+        };
+        
+        return experienceBonus[level] || 0;
+    }
+    
+    function displayResults(analysis) {
+        // Update compatibility score
+        updateCompatibilityScore(analysis.score);
+        
+        // Display matched skills
+        displayMatchedSkills(analysis.matchedSkills);
+        
+        // Display missing skills
+        displayMissingSkills(analysis.missingSkills);
+        
+        // Display bonus skills
+        displayBonusSkills(analysis.bonusSkills);
+        
+        // Display relevant projects
+        displayRelevantProjects(analysis.relevantProjects);
+    }
+    
+    function updateCompatibilityScore(score) {
+        const scoreElement = document.getElementById('score-value');
+        const scoreCircle = document.querySelector('.score-circle');
+        
+        if (scoreElement && scoreCircle) {
+            // Animate score counting
+            let currentScore = 0;
+            const increment = score / 50; // 50 frames animation
+            
+            const scoreAnimation = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= score) {
+                    currentScore = score;
+                    clearInterval(scoreAnimation);
+                }
+                
+                scoreElement.textContent = Math.round(currentScore) + '%';
+                
+                // Update circle gradient
+                const angle = (currentScore / 100) * 360;
+                scoreCircle.style.setProperty('--score-angle', angle + 'deg');
+            }, 20);
+        }
+    }
+    
+    function displayMatchedSkills(skills) {
+        const container = document.getElementById('matched-skills-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        skills.forEach(skill => {
+            const tag = document.createElement('div');
+            tag.className = 'skill-tag';
+            tag.innerHTML = `
+                <i class="fas fa-check"></i>
+                <span>${skill.name}</span>
+                <small>(${skill.level}%)</small>
+            `;
+            container.appendChild(tag);
+        });
+    }
+    
+    function displayMissingSkills(skills) {
+        const container = document.getElementById('missing-skills-list');
+        const section = document.getElementById('missing-skills-section');
+        
+        if (!container || !section) return;
+        
+        if (skills.length === 0) {
+            section.style.display = 'none';
+            return;
+        }
+        
+        section.style.display = 'block';
+        container.innerHTML = '';
+        
+        skills.forEach(skill => {
+            const tag = document.createElement('div');
+            tag.className = 'skill-tag';
+            tag.innerHTML = `
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>${skill.name}</span>
+            `;
+            if (skill.suggestion) {
+                tag.title = skill.suggestion;
+            }
+            container.appendChild(tag);
+        });
+    }
+    
+    function displayBonusSkills(skills) {
+        const container = document.getElementById('bonus-skills-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        skills.slice(0, 6).forEach(skill => { // Limit to 6 bonus skills
+            const tag = document.createElement('div');
+            tag.className = 'skill-tag';
+            tag.innerHTML = `
+                <i class="fas fa-star"></i>
+                <span>${skill.name}</span>
+                <small>(${skill.level}%)</small>
+            `;
+            container.appendChild(tag);
+        });
+    }
+    
+    function displayRelevantProjects(projects) {
+        const container = document.getElementById('relevant-projects-list');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        projects.slice(0, 4).forEach(project => { // Limit to 4 projects
+            const card = document.createElement('div');
+            card.className = 'project-match-card';
+            card.innerHTML = `
+                <h5>${project.title}</h5>
+                <p>${project.description}</p>
+                <div class="project-relevance">
+                    <span>Pertinence:</span>
+                    <div class="relevance-bar">
+                        <div class="relevance-fill" style="width: ${project.relevanceScore}%"></div>
+                    </div>
+                    <span>${Math.round(project.relevanceScore)}%</span>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+    
+    console.log('🎯 Skills matching system initialized successfully');
+}
+
+// Functions for matching actions
+function downloadMatchingReport() {
+    const results = document.getElementById('matching-results');
+    if (!results || results.style.display === 'none') {
+        showNotification('Veuillez d\'abord effectuer une analyse de compatibilité', 'error');
+        return;
+    }
+    
+    const score = document.getElementById('score-value')?.textContent || '0%';
+    const matchedSkills = Array.from(document.querySelectorAll('#matched-skills-list .skill-tag'))
+        .map(tag => tag.textContent.trim())
+        .join(', ');
+    
+    const reportContent = `RAPPORT DE COMPATIBILITÉ - BOUBACAR DABO
+Generated: ${new Date().toLocaleDateString('fr-FR')}
+
+SCORE DE COMPATIBILITÉ: ${score}
+
+COMPÉTENCES CORRESPONDANTES:
+${matchedSkills || 'Aucune compétence spécifiée'}
+
+PROJETS PERTINENTS:
+- IA_PRO: Assistant documentaire avec RAG
+- Mini-GPT PyTorch: Implémentation transformer from scratch
+- DocuAI: Application NLP avec interface Streamlit
+- E-commerce Analyzer: Dashboard analytics avec ML
+
+CONTACT:
+Email: dabom372@gmail.com
+LinkedIn: https://www.linkedin.com/in/boubacar-dabo-94206a291/
+Portfolio: https://bouba-dabo.github.io/portfolio
+
+DISPONIBILITÉ: À partir de Février 2026 (Stage → CDI possible)
+`;
+
+    try {
+        const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Boubacar_DABO_Matching_Report_${new Date().toISOString().split('T')[0]}.txt`;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showNotification('Rapport de compatibilité téléchargé avec succès!', 'success');
+    } catch (error) {
+        console.error('Erreur lors du téléchargement du rapport:', error);
+        showNotification('Erreur lors du téléchargement', 'error');
+    }
+}
+
+function contactForMatch() {
+    const results = document.getElementById('matching-results');
+    if (!results || results.style.display === 'none') {
+        showNotification('Veuillez d\'abord effectuer une analyse de compatibilité', 'error');
+        return;
+    }
+    
+    const score = document.getElementById('score-value')?.textContent || '0%';
+    const subject = encodeURIComponent(`Opportunité de collaboration - Compatibilité ${score}`);
+    const body = encodeURIComponent(`Bonjour Boubacar,
+
+J'ai effectué une analyse de compatibilité sur votre portfolio et les résultats sont très encourageants (${score} de compatibilité).
+
+Je souhaiterais discuter d'une opportunité de collaboration dans le domaine de la Data Science/IA.
+
+Pouvons-nous organiser un échange pour discuter plus en détail ?
+
+Cordialement,`);
+    
+    const mailtoLink = `mailto:dabom372@gmail.com?subject=${subject}&body=${body}`;
+    window.open(mailtoLink);
+    
+    showNotification('Client email ouvert pour prise de contact', 'success');
 }
     
     console.log('🚀 Portfolio sécurisé et optimisé initialisé !');

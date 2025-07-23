@@ -12,6 +12,11 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - **Animations avancées** avec machine à écrire et particules IA
 - **Loader neuronal** avec animations d'orbites
 - **Chatbot IA intégré** pour interaction avec les recruteurs
+- **Système de matching compétences** - NOUVEAU ! ⭐
+  - Formulaire intelligent pour critères recruteurs
+  - Score de compatibilité automatique
+  - Analyse détaillée des correspondances
+  - Rapport téléchargeable
 - **Graphiques interactifs** avec Chart.js et données ML temps réel
 - **Sécurité renforcée** avec CSP et protection XSS
 - **Performance optimisée** avec lazy loading et throttling
@@ -90,13 +95,38 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - Git/GitHub, Docker
 - Cloud Computing, API Development
 
-## 📁 Structure du projet
+## 🎯 Matching Compétences - NOUVEAU !
+
+**Fonctionnalité interactive pour les recruteurs :**
+
+- **Formulaire intelligent** : Saisissez vos critères (domaine, technologies, type de projets)
+- **Analyse de compatibilité** : Score de matching en temps réel avec mes compétences
+- **Correspondances détaillées** :
+  - ✅ Compétences correspondantes avec niveaux de maîtrise
+  - ⚠️ Compétences à développer (avec suggestions d'alternatives)
+  - ⭐ Compétences bonus non demandées mais pertinentes
+  - � Projets pertinents avec score de relevance
+
+- **Actions disponibles** :
+  - 📥 Téléchargement du rapport de compatibilité
+  - 📧 Contact direct avec email pré-rempli
+  - 🎯 Analyse personnalisée selon vos besoins
+
+**Base de données complète :**
+- 40+ technologies référencées avec niveaux de maîtrise
+- 6 projets analysés avec technologies associées
+- Algorithme de scoring intelligent
+- Interface responsive et accessible
+
+## �📁 Structure du projet
 
 ```
 portfolio/
 ├── index.html              # Page principale avec CSP headers
-├── styles.css              # Styles futuristes optimisés (2387 lignes)
-├── script.js               # JavaScript sécurisé (490 lignes)
+├── styles.css              # Styles futuristes optimisés
+├── script.js               # JavaScript sécurisé avec matching system
+├── skills-matching.css     # Styles pour le système de matching - NOUVEAU
+├── chatbot-styles.css      # Styles pour le chatbot IA
 ├── README.md              # Documentation complète
 ├── SECURITY.md            # Documentation sécurité
 ├── PERFORMANCE_REPORT.md  # Rapport qualité A+

@@ -41,6 +41,7 @@
     
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chatbot-styles.css">
+    <link rel="stylesheet" href="skills-matching.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -83,6 +84,7 @@
                 <li><a href="#about" class="nav-link">À propos</a></li>
                 <li><a href="#projects" class="nav-link">Projets</a></li>
                 <li><a href="#skills" class="nav-link">Compétences</a></li>
+                <li><a href="#skills-matching" class="nav-link">Matching</a></li>
                 <li><a href="#experience" class="nav-link">Expérience</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -1086,6 +1088,124 @@
                                     <div class="skill-progress" data-width="85"></div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Matching Section -->
+    <section id="skills-matching" class="skills-matching">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-text">Matching Compétences</span>
+                <span class="title-underline"></span>
+            </h2>
+            <p class="section-subtitle">Découvrez la correspondance entre vos besoins et mes compétences</p>
+            
+            <div class="matching-content">
+                <div class="matching-form-card" data-aos="fade-up">
+                    <div class="form-header">
+                        <i class="fas fa-search"></i>
+                        <h3>Vos critères de recherche</h3>
+                    </div>
+                    
+                    <form id="skills-matching-form" class="matching-form">
+                        <div class="form-group">
+                            <label for="job-domain">Domaine recherché</label>
+                            <select id="job-domain" name="domain" required>
+                                <option value="">Sélectionnez un domaine</option>
+                                <option value="data-science">Data Science</option>
+                                <option value="machine-learning">Machine Learning</option>
+                                <option value="ai">Intelligence Artificielle</option>
+                                <option value="big-data">Big Data</option>
+                                <option value="nlp">Natural Language Processing</option>
+                                <option value="data-engineering">Data Engineering</option>
+                                <option value="business-intelligence">Business Intelligence</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="required-skills">Technologies requises (séparez par des virgules)</label>
+                            <input type="text" id="required-skills" name="skills" 
+                                   placeholder="Ex: Python, PyTorch, SQL, Docker..." 
+                                   autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="experience-level">Niveau d'expérience requis</label>
+                            <select id="experience-level" name="level">
+                                <option value="">Peu importe</option>
+                                <option value="junior">Junior (0-2 ans)</option>
+                                <option value="intermediate">Intermédiaire (2-5 ans)</option>
+                                <option value="senior">Senior (5+ ans)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-type">Type de projets</label>
+                            <input type="text" id="project-type" name="projects" 
+                                   placeholder="Ex: RAG, Computer Vision, Analytics Dashboard..." 
+                                   autocomplete="off">
+                        </div>
+                        
+                        <button type="submit" class="btn-primary matching-btn">
+                            <i class="fas fa-magic"></i>
+                            Analyser la compatibilité
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="matching-results" id="matching-results" style="display: none;">
+                    <div class="results-header">
+                        <h3>Résultats du matching</h3>
+                        <div class="compatibility-score">
+                            <div class="score-circle">
+                                <div class="score-value" id="score-value">0%</div>
+                            </div>
+                            <span class="score-label">Compatibilité</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-content">
+                        <div class="matched-skills">
+                            <h4><i class="fas fa-check-circle"></i> Compétences correspondantes</h4>
+                            <div id="matched-skills-list" class="skills-tags">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="missing-skills" id="missing-skills-section" style="display: none;">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Compétences à développer</h4>
+                            <div id="missing-skills-list" class="skills-tags missing">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="bonus-skills">
+                            <h4><i class="fas fa-star"></i> Compétences bonus</h4>
+                            <div id="bonus-skills-list" class="skills-tags bonus">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="relevant-projects">
+                            <h4><i class="fas fa-project-diagram"></i> Projets pertinents</h4>
+                            <div id="relevant-projects-list" class="projects-grid">
+                                <!-- Dynamically populated -->
+                            </div>
+                        </div>
+                        
+                        <div class="matching-actions">
+                            <button class="btn-secondary" onclick="downloadMatchingReport()">
+                                <i class="fas fa-download"></i>
+                                Télécharger le rapport
+                            </button>
+                            <button class="btn-primary" onclick="contactForMatch()">
+                                <i class="fas fa-envelope"></i>
+                                Prendre contact
+                            </button>
                         </div>
                     </div>
                 </div>
