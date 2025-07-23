@@ -1012,10 +1012,272 @@ function initializeDataVisualizations() {
         initializeNeuralNetwork();
         initializeAnalyticsDashboard();
         initializeChartControls();
+        initializeChatbot();
         console.log('✨ Data visualizations initialized successfully');
     } catch (error) {
         console.warn('⚠️ Error initializing data visualizations:', error);
     }
+}
+
+// ========================
+// AI CHATBOT FUNCTIONALITY
+// ========================
+
+function initializeChatbot() {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotInput = document.getElementById('chatbot-input-field');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+
+    if (!chatbotToggle || !chatbotWindow) {
+        console.warn('⚠️ Chatbot elements not found');
+        return;
+    }
+
+    // Chatbot knowledge base
+    const knowledgeBase = {
+        'compétences': {
+            keywords: ['compétence', 'skill', 'technologie', 'maîtrise', 'savoir'],
+            response: `🎯 **Compétences principales de Boubacar :**
+
+**Intelligence Artificielle & ML :**
+• PyTorch, TensorFlow, Scikit-learn
+• Deep Learning, Neural Networks
+• Computer Vision, NLP
+
+**Big Data & Analytics :**
+• Apache Spark, Hadoop, HDFS
+• Data Engineering, ETL Pipelines
+• Distributed Computing
+
+**Data Science :**
+• Pandas, NumPy, Plotly, Streamlit
+• Data Analysis, Visualization
+• Business Intelligence, Power BI
+
+**Développement :**
+• Python, Java, FastAPI, SQL
+• Git/GitHub, Docker, Cloud Computing`
+        },
+        'projets': {
+            keywords: ['projet', 'réalisation', 'application', 'développement'],
+            response: `🚀 **Projets phares de Boubacar :**
+
+1. **IA_PRO** - Assistant documentaire avec RAG
+2. **Mini-GPT PyTorch** - Implémentation transformer from scratch
+3. **DocuAI** - Application NLP ouverte
+4. **E-commerce Analyzer** - Dashboard analytics avancé
+5. **Assistant Claude GPT** - IA conversationnelle
+6. **Classification RFID** - ML pour identification automatique
+7. **Analyse Sentiment Tweets** - NLP pour opinion publique
+
+🔗 **Démonstration :** [Showcase App](https://bouba-dabo-showcase-app-hnfxcf.streamlit.app/)`
+        },
+        'contact': {
+            keywords: ['contact', 'email', 'linkedin', 'joindre', 'contacter'],
+            response: `📧 **Comment contacter Boubacar :**
+
+• **Email :** dabom372@gmail.com
+• **LinkedIn :** [Boubacar Dabo](https://www.linkedin.com/in/boubacar-dabo-94206a291/)
+• **GitHub :** [Bouba-Dabo](https://github.com/Bouba-Dabo)
+• **Localisation :** Rouen (études) • Saint-Denis Paris (résidence)
+
+🎯 **Objectif :** Stage à partir de Février 2026 (CDI possible)`
+        },
+        'formation': {
+            keywords: ['formation', 'études', 'diplôme', 'école', 'esigelec', 'parcours'],
+            response: `🎓 **Formation de Boubacar :**
+
+• **ESIGELEC** - Étudiant-ingénieur en Big Data & IA
+• **Double diplôme MPI** à l'UCAD (Mathématiques, Physique, Informatique)
+• **Classes préparatoires** - Base scientifique solide
+• **Spécialisation :** Intelligence Artificielle et Big Data
+
+🏆 **Parcours exceptionnel** avec une approche pluridisciplinaire unique !`
+        },
+        'stage': {
+            keywords: ['stage', 'internship', 'opportunité', 'recherche', 'disponibilité'],
+            response: `🚀 **Recherche de stage :**
+
+• **Période :** À partir de Février 2026
+• **Durée :** Stage longue durée (CDI possible)
+• **Domaines :** Data Science, Intelligence Artificielle, Big Data
+• **Localisation :** Flexible (Rouen, Paris, France)
+
+💼 **Profil recherché :** Projets innovants en IA/ML, environnement stimulant, équipe passionnée !`
+        },
+        'experience': {
+            keywords: ['expérience', 'background', 'historique', 'parcours professionnel'],
+            response: `💼 **Expérience de Boubacar :**
+
+🎯 **Profil étudiant-ingénieur** avec focus sur l'innovation
+
+• **Projets académiques** avancés en IA/ML
+• **Développement personnel** de 7+ projets techniques
+• **Veille technologique** constante
+• **Approche pratique** : de la théorie à l'implémentation
+
+🌟 **Valeurs :** Rigueur, Curiosité intellectuelle, Innovation technologique`
+        }
+    };
+
+    // Toggle chatbot
+    chatbotToggle.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('active');
+        if (chatbotWindow.classList.contains('active')) {
+            chatbotInput.focus();
+        }
+    });
+
+    // Close chatbot
+    chatbotClose.addEventListener('click', () => {
+        chatbotWindow.classList.remove('active');
+    });
+
+    // Send message
+    function sendMessage() {
+        const message = chatbotInput.value.trim();
+        if (!message) return;
+
+        // Add user message
+        addMessage(message, 'user');
+        chatbotInput.value = '';
+
+        // Show typing indicator
+        showTypingIndicator();
+
+        // Process and respond
+        setTimeout(() => {
+            hideTypingIndicator();
+            const response = processMessage(message);
+            addMessage(response, 'bot');
+        }, 1500);
+    }
+
+    chatbotSend.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Quick action buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('quick-btn')) {
+            const question = e.target.dataset.question;
+            if (question) {
+                addMessage(question, 'user');
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = processMessage(question);
+                    addMessage(response, 'bot');
+                }, 1500);
+                showTypingIndicator();
+            }
+        }
+    });
+
+    function addMessage(content, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}-message`;
+        
+        const avatarDiv = document.createElement('div');
+        avatarDiv.className = 'message-avatar';
+        if (type === 'bot') {
+            avatarDiv.innerHTML = '<i class="fas fa-robot"></i>';
+        }
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        
+        if (type === 'bot') {
+            // Format bot response with markdown-like syntax
+            const formattedContent = content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/•/g, '•')
+                .replace(/\n/g, '<br>');
+            contentDiv.innerHTML = `<p>${formattedContent}</p>`;
+        } else {
+            contentDiv.innerHTML = `<p>${content}</p>`;
+        }
+        
+        messageDiv.appendChild(avatarDiv);
+        messageDiv.appendChild(contentDiv);
+        chatbotMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot-message typing-message';
+        typingDiv.innerHTML = `
+            <div class="message-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+        `;
+        chatbotMessages.appendChild(typingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+        const typingMessage = chatbotMessages.querySelector('.typing-message');
+        if (typingMessage) {
+            typingMessage.remove();
+        }
+    }
+
+    function processMessage(message) {
+        const lowerMessage = message.toLowerCase();
+        
+        // Find matching knowledge base entry
+        for (const [category, data] of Object.entries(knowledgeBase)) {
+            if (data.keywords.some(keyword => lowerMessage.includes(keyword))) {
+                return data.response;
+            }
+        }
+        
+        // Handle greetings
+        if (lowerMessage.includes('bonjour') || lowerMessage.includes('salut') || lowerMessage.includes('hello')) {
+            return `👋 Bonjour ! Je suis l'assistant IA de Boubacar DABO. Je peux vous renseigner sur :
+
+🎯 Ses **compétences** en IA et Data Science
+🚀 Ses **projets** innovants
+📧 Comment le **contacter**
+🎓 Sa **formation** à ESIGELEC
+💼 Sa recherche de **stage**
+
+Que souhaitez-vous savoir ?`;
+        }
+        
+        // Handle thanks
+        if (lowerMessage.includes('merci') || lowerMessage.includes('thanks')) {
+            return `🙏 Avec plaisir ! N'hésitez pas si vous avez d'autres questions sur le profil de Boubacar. Bonne visite du portfolio ! ✨`;
+        }
+        
+        // Default response
+        return `🤔 Désolé, je n'ai pas bien compris votre question. Je peux vous aider avec :
+
+• **Compétences** techniques de Boubacar
+• **Projets** et réalisations  
+• **Contact** et coordonnées
+• **Formation** et parcours
+• **Stage** recherché
+
+Reformulez votre question ou utilisez les boutons rapides ! 😊`;
+    }
+
+    console.log('🤖 Chatbot initialized successfully');
 }
     
     console.log('🚀 Portfolio sécurisé et optimisé initialisé !');

@@ -11,6 +11,8 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - **Design futuriste** avec thème sombre et effets néon
 - **Animations avancées** avec machine à écrire et particules IA
 - **Loader neuronal** avec animations d'orbites
+- **Chatbot IA intégré** pour interaction avec les recruteurs
+- **Graphiques interactifs** avec Chart.js et données ML temps réel
 - **Sécurité renforcée** avec CSP et protection XSS
 - **Performance optimisée** avec lazy loading et throttling
 - **Responsive design** pour tous les appareils
@@ -26,11 +28,13 @@ Ce portfolio présente mes compétences en IA, Machine Learning, NLP et Data Sci
 - **HTML5** - Structure sémantique avec headers de sécurité
 - **CSS3** - Styles avancés avec variables CSS, Grid, Flexbox, animations GPU
 - **JavaScript (Vanilla)** - Code sécurisé avec sanitisation XSS et gestion mémoire
+- **Chart.js** - Graphiques interactifs et visualisations de données ML
 - **AOS Library** - Animations on scroll optimisées
 - **Google Fonts** - Typographie moderne (Orbitron, Rajdhani)
 - **Font Awesome** - Icônes via CDN sécurisé
 - **Content Security Policy** - Protection contre XSS et injections
 - **Web Audio API** - Effets sonores interactifs
+- **IA Chatbot** - Assistant intelligent pour recruteurs
 
 ## 👨‍💻 À propos de moi
 
@@ -167,6 +171,8 @@ Optimisé pour tous les appareils :
 
 ## 🎭 Effets visuels signature
 
+- **Chatbot IA intelligent** avec base de connaissances sur le profil
+- **Graphiques ML interactifs** avec données d'accuracy, loss et performance
 - **Loader neuronal** avec système d'orbites et messages progressifs
 - **Effet machine à écrire** avec curseur clignotant sur le hero
 - **Particules IA flottantes** avec interactions au survol

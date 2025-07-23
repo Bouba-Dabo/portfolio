@@ -40,6 +40,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='90' font-size='80'%3E🚀%3C/text%3E%3C/svg%3E">
     
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chatbot-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -1420,6 +1421,52 @@
         ]
     }
     </script>
+    
+    <!-- AI Chatbot -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div id="chatbot-toggle" class="chatbot-toggle">
+            <i class="fas fa-robot"></i>
+            <span class="chatbot-notification">💬</span>
+        </div>
+        
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chatbot-info">
+                    <h4>Assistant IA Portfolio</h4>
+                    <span class="chatbot-status">En ligne</span>
+                </div>
+                <button id="chatbot-close" class="chatbot-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>👋 Salut ! Je suis l'assistant IA de Boubacar. Je peux répondre à vos questions sur son profil, ses compétences et ses projets. Comment puis-je vous aider ?</p>
+                        <div class="quick-actions">
+                            <button class="quick-btn" data-question="Parlez-moi de ses compétences">🎯 Compétences</button>
+                            <button class="quick-btn" data-question="Quels sont ses projets principaux ?">🚀 Projets</button>
+                            <button class="quick-btn" data-question="Comment le contacter ?">📧 Contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Posez votre question..." maxlength="500">
+                <button id="chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
