@@ -290,12 +290,40 @@
 
         @media print {
             .download-section {
-                display: none;
+                display: none !important;
             }
             .cv-container {
                 box-shadow: none;
                 margin: 0;
                 max-width: none;
+                min-height: auto;
+            }
+            .cv-header::before {
+                animation: none;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .cv-sidebar {
+                background: #f5f5f5 !important;
+                border-right: 2px solid #00d4ff !important;
+            }
+            .cv-main {
+                background: white !important;
+            }
+            .section-title {
+                color: #00d4ff !important;
+            }
+            .item-title {
+                color: #00d4ff !important;
+            }
+            .item-company {
+                color: #ff006b !important;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
         }
 
@@ -641,44 +669,99 @@
             <i class="fas fa-download"></i>
             Télécharger en PDF
         </button>
+        <button class="download-btn" onclick="window.print()" style="margin-left: 15px; background: linear-gradient(135deg, #ff006b 0%, #ff7b00 100%);">
+            <i class="fas fa-print"></i>
+            Imprimer
+        </button>
         <p style="margin-top: 15px; color: var(--text-secondary); font-size: 0.9rem;">
             Portfolio complet disponible sur : 
             <a href="https://bouba-dabo.github.io/portfolio/" style="color: var(--accent-cyan); text-decoration: none;">
                 bouba-dabo.github.io/portfolio
             </a>
         </p>
+        <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.7;">
+            💡 Si le téléchargement PDF ne fonctionne pas, utilisez le bouton "Imprimer" puis "Enregistrer en PDF"
+        </p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         function downloadCV() {
+            // Vérifier si html2pdf est disponible
+            if (typeof html2pdf === 'undefined') {
+                console.error('html2pdf library not loaded');
+                // Fallback - ouvrir la page en mode impression
+                window.print();
+                return;
+            }
+
             const element = document.getElementById('cv-content');
+            
+            // Optimiser l'élément pour le PDF
+            const originalStyle = element.style.cssText;
+            element.style.cssText = originalStyle + '; max-width: none; box-shadow: none; margin: 0; padding: 0;';
+            
             const opt = {
-                margin: 0.5,
-                filename: 'CV_Boubacar_DABO_Data_Science_2024.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
+                margin: [0.5, 0.5, 0.5, 0.5],
+                filename: 'CV_Boubacar_DABO_Data_Science_2025.pdf',
+                image: { 
+                    type: 'jpeg', 
+                    quality: 0.95
+                },
                 html2canvas: { 
-                    scale: 2,
+                    scale: 1.5,
                     useCORS: true,
-                    letterRendering: true
+                    letterRendering: true,
+                    logging: false,
+                    width: 794,
+                    height: 1123
                 },
                 jsPDF: { 
-                    unit: 'in', 
+                    unit: 'px', 
                     format: 'a4', 
-                    orientation: 'portrait',
-                    compress: true
+                    orientation: 'portrait'
+                },
+                pagebreak: { 
+                    mode: ['avoid-all', 'css', 'legacy'] 
                 }
             };
 
             // Masquer temporairement la section de téléchargement
             const downloadSection = document.querySelector('.download-section');
+            const originalDisplay = downloadSection.style.display;
             downloadSection.style.display = 'none';
 
-            html2pdf().set(opt).from(element).save().then(() => {
-                // Restaurer la section de téléchargement
-                downloadSection.style.display = 'block';
-            });
+            // Générer et télécharger le PDF
+            html2pdf()
+                .set(opt)
+                .from(element)
+                .save()
+                .then(() => {
+                    // Restaurer les styles originaux
+                    element.style.cssText = originalStyle;
+                    downloadSection.style.display = originalDisplay;
+                    console.log('PDF généré avec succès');
+                })
+                .catch((error) => {
+                    console.error('Erreur lors de la génération du PDF:', error);
+                    // Fallback en cas d'erreur
+                    window.print();
+                    // Restaurer les styles
+                    element.style.cssText = originalStyle;
+                    downloadSection.style.display = originalDisplay;
+                });
         }
+
+        // Test si la bibliothèque est chargée
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                if (typeof html2pdf === 'undefined') {
+                    console.warn('html2pdf.js not loaded properly, will use print fallback');
+                } else {
+                    console.log('html2pdf.js loaded successfully');
+                }
+            }, 1000);
+        });
 
         // Animation d'entrée
         document.addEventListener('DOMContentLoaded', function() {
