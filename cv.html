@@ -667,11 +667,11 @@
     <div class="download-section">
         <button class="download-btn" onclick="downloadCV()">
             <i class="fas fa-download"></i>
-            Télécharger en PDF (Recommandé)
+            Télécharger PDF (Recommandé)
         </button>
         <button class="download-btn" onclick="downloadCVPDF()" style="margin-left: 15px; background: linear-gradient(135deg, #ff006b 0%, #ff7b00 100%);">
             <i class="fas fa-file-pdf"></i>
-            PDF Direct
+            PDF Direct (jsPDF)
         </button>
         <button class="download-btn" onclick="window.print()" style="margin-left: 15px; background: linear-gradient(135deg, #9d4edd 0%, #663399 100%);">
             <i class="fas fa-print"></i>
@@ -683,12 +683,24 @@
                 bouba-dabo.github.io/portfolio
             </a>
         </p>
-        <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.7;">
-            💡 <strong>Méthode recommandée</strong> : Utilisez "Télécharger en PDF (Recommandé)" puis "Enregistrer en PDF" dans la boîte de dialogue d'impression
-        </p>
+        <div style="margin-top: 15px; padding: 15px; background: rgba(0, 212, 255, 0.1); border-radius: 10px; border-left: 4px solid var(--accent-cyan);">
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px;">
+                <strong>📋 Instructions de téléchargement :</strong>
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 5px;">
+                • <strong>PDF Recommandé</strong> : Ouvre une boîte d'impression → Choisir "Enregistrer en PDF"
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 5px;">
+                • <strong>PDF Direct</strong> : Génération automatique avec jsPDF (plus rapide)
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                • <strong>Imprimer</strong> : Pour impression physique ou sauvegarde navigateur
+            </p>
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         function downloadCV() {
             // Alternative plus fiable - utiliser window.print() directement
@@ -910,39 +922,87 @@
             }, 500);
         }
 
-        // Fonction alternative avec html2pdf (backup)
+        // Fonction alternative avec jsPDF (plus fiable)
         function downloadCVPDF() {
-            if (typeof html2pdf === 'undefined') {
-                console.error('html2pdf library not loaded');
+            // Vérifier que les bibliothèques sont chargées
+            if (typeof window.jsPDF === 'undefined' || typeof html2canvas === 'undefined') {
+                console.error('jsPDF ou html2canvas non chargés, utilisation du fallback');
                 downloadCV(); // Fallback vers la méthode print
                 return;
             }
 
             const element = document.getElementById('cv-content');
-            
-            const opt = {
-                margin: 10,
-                filename: 'CV_Boubacar_DABO_Data_Science_2025.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
-                    scale: 2,
-                    useCORS: true,
-                    allowTaint: true,
-                    backgroundColor: '#ffffff'
-                },
-                jsPDF: { 
-                    unit: 'mm', 
-                    format: 'a4', 
-                    orientation: 'portrait' 
-                }
-            };
-
-            // Masquer la section de téléchargement
             const downloadSection = document.querySelector('.download-section');
+            
+            // Masquer temporairement la section de téléchargement
             const originalDisplay = downloadSection.style.display;
             downloadSection.style.display = 'none';
+            
+            // Optimiser l'élément pour la capture
+            const originalStyles = {
+                maxWidth: element.style.maxWidth,
+                boxShadow: element.style.boxShadow,
+                margin: element.style.margin
+            };
+            
+            element.style.maxWidth = '794px';
+            element.style.boxShadow = 'none';
+            element.style.margin = '0';
+            
+            // Utiliser html2canvas avec jsPDF
+            html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                width: 794,
+                height: element.scrollHeight,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: 794,
+                windowHeight: element.scrollHeight
+            }).then(canvas => {
+                try {
+                    const { jsPDF } = window.jsPDF;
+                    
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+                    
+                    const imgWidth = 210; // A4 width in mm
+                    const pageHeight = 297; // A4 height in mm
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                    let heightLeft = imgHeight;
+                    let position = 0;
 
-            html2pdf().set(opt).from(element).save().finally(() => {
+                    // Ajouter la première page
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+
+                    // Ajouter des pages supplémentaires si nécessaire
+                    while (heightLeft >= 0) {
+                        position = heightLeft - imgHeight;
+                        pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                        heightLeft -= pageHeight;
+                    }
+
+                    // Télécharger le PDF
+                    pdf.save('CV_Boubacar_DABO_Data_Science_2025.pdf');
+                    
+                    console.log('PDF généré avec succès via jsPDF');
+                    
+                } catch (error) {
+                    console.error('Erreur lors de la génération PDF:', error);
+                    alert('Erreur lors de la génération du PDF. Utilisez le bouton "Télécharger en PDF (Recommandé)" à la place.');
+                }
+            }).catch(error => {
+                console.error('Erreur html2canvas:', error);
+                alert('Erreur lors de la capture. Utilisez le bouton "Télécharger en PDF (Recommandé)" à la place.');
+            }).finally(() => {
+                // Restaurer les styles originaux
+                element.style.maxWidth = originalStyles.maxWidth;
+                element.style.boxShadow = originalStyles.boxShadow;
+                element.style.margin = originalStyles.margin;
                 downloadSection.style.display = originalDisplay;
             });
         }
@@ -950,6 +1010,15 @@
         // Test des fonctionnalités au chargement
         window.addEventListener('load', function() {
             console.log('CV page loaded successfully');
+            
+            // Vérifier que les bibliothèques sont chargées
+            setTimeout(() => {
+                if (typeof window.jsPDF !== 'undefined' && typeof html2canvas !== 'undefined') {
+                    console.log('jsPDF et html2canvas chargés avec succès');
+                } else {
+                    console.warn('Certaines bibliothèques PDF ne sont pas chargées correctement');
+                }
+            }, 1000);
         });
 
         // Animation d'entrée
