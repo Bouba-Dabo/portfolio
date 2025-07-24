@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Boubacar DABO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #111111;
+            --accent-cyan: #00d4ff;
+            --accent-pink: #ff006b;
+            --accent-purple: #9d4edd;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --gradient-primary: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .cv-container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: var(--secondary-bg);
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
+            min-height: 297mm;
+            position: relative;
+        }
+
+        .cv-header {
+            background: var(--gradient-primary);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(360deg); }
+        }
+
+        .cv-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .cv-header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .cv-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .cv-sidebar {
+            background: #1a1a1a;
+            padding: 40px 30px;
+            border-right: 2px solid var(--accent-cyan);
+        }
+
+        .cv-main {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            width: 25px;
+            color: var(--accent-cyan);
+            margin-right: 15px;
+        }
+
+        .skills-category {
+            margin-bottom: 25px;
+        }
+
+        .skills-category h4 {
+            color: var(--accent-pink);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 3px solid var(--accent-cyan);
+            font-size: 0.9rem;
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .language-item {
+            text-align: center;
+            padding: 10px;
+            background: rgba(157, 78, 221, 0.1);
+            border-radius: 5px;
+            border: 1px solid var(--accent-purple);
+        }
+
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .experience-item::before, .education-item::before, .project-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .item-title {
+            font-weight: 700;
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+        }
+
+        .item-company {
+            color: var(--accent-pink);
+            font-weight: 600;
+        }
+
+        .item-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .item-description {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .item-details {
+            list-style: none;
+        }
+
+        .item-details li {
+            padding: 3px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .item-details li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        .certifications {
+            background: rgba(157, 78, 221, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-purple);
+            margin-bottom: 25px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.2);
+            color: var(--accent-cyan);
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 30px;
+            background: var(--secondary-bg);
+            border-top: 2px solid var(--accent-cyan);
+        }
+
+        .download-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+        }
+
+        @media print {
+            .download-section {
+                display: none;
+            }
+            .cv-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cv-content {
+                grid-template-columns: 1fr;
+            }
+            .cv-header h1 {
+                font-size: 2rem;
+            }
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container" id="cv-content">
+        <!-- Header -->
+        <div class="cv-header">
+            <h1>BOUBACAR DABO</h1>
+            <p class="subtitle">
+                Étudiant-Ingénieur en Big Data & Intelligence Artificielle à ESIGELEC<br>
+                Passionné par l'IA et l'analyse de données • Recherche stage Data Science Février 2026
+            </p>
+        </div>
+
+        <!-- Content -->
+        <div class="cv-content">
+            <!-- Sidebar -->
+            <div class="cv-sidebar">
+                <!-- Contact -->
+                <section>
+                    <h3 class="section-title">Contact</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>07 49 99 55 82</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>dabom372@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Rouen 76800</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-car"></i>
+                        <span>Permis B</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>Boubacar DABO</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>Bouba-Dabo</span>
+                    </div>
+                </section>
+
+                <!-- Compétences -->
+                <section>
+                    <h3 class="section-title">Compétences</h3>
+                    
+                    <div class="skills-category">
+                        <h4>Langages</h4>
+                        <div class="skill-item">Python (Expert)</div>
+                        <div class="skill-item">SQL (Avancé)</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">Java, PHP, C</div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h4>IA & Machine Learning</h4>
+                        <div class="skill-item">PyTorch, TensorFlow</div>
+                        <div class="skill-item">Scikit-Learn</div>
+                        <div class="skill-item">NLP (spaCy, NLTK)</div>
+                        <div class="skill-item">Deep Learning</div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h4>Data & Visualisation</h4>
+                        <div class="skill-item">Pandas, NumPy</div>
+                        <div class="skill-item">Power BI, Streamlit</div>
+                        <div class="skill-item">Matplotlib, Plotly</div>
+                        <div class="skill-item">MySQL, PostgreSQL</div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h4>Outils & Méthodes</h4>
+                        <div class="skill-item">Git, Docker</div>
+                        <div class="skill-item">Jupyter, FastAPI</div>
+                        <div class="skill-item">Microsoft Teams</div>
+                        <div class="skill-item">Talend, Spark</div>
+                    </div>
+                </section>
+
+                <!-- Certifications -->
+                <section>
+                    <h3 class="section-title">Certifications</h3>
+                    <div class="certifications">
+                        <h4 style="color: var(--accent-cyan); margin-bottom: 10px;">
+                            <i class="fab fa-google"></i> Google Cloud
+                        </h4>
+                        <p style="font-size: 0.9rem;">• Associate Cloud Engineer (ACE)</p>
+                        <p style="font-size: 0.9rem;">• Data Analytics</p>
+                        <p style="font-size: 0.85rem; margin-top: 8px; opacity: 0.8;">
+                            Déploiement solutions Big Data & IA
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Langues -->
+                <section>
+                    <h3 class="section-title">Langues</h3>
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <strong>Français</strong><br>
+                            <small>Natif</small>
+                        </div>
+                        <div class="language-item">
+                            <strong>Anglais</strong><br>
+                            <small>B1/B2</small>
+                        </div>
+                        <div class="language-item">
+                            <strong>Espagnol</strong><br>
+                            <small>Notions</small>
+                        </div>
+                        <div class="language-item">
+                            <strong>Wolof</strong><br>
+                            <small>Natif</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Centres d'intérêt -->
+                <section>
+                    <h3 class="section-title">Intérêts</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-futbol"></i>
+                        <span>Football, Natation</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-chess"></i>
+                        <span>Jeu de dames</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-book"></i>
+                        <span>Manga, Tech</span>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Main Content -->
+            <div class="cv-main">
+                <!-- Formation -->
+                <section>
+                    <h3 class="section-title">Formations & Diplômes</h3>
+                    
+                    <div class="education-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Cycle Ingénieur - Big Data & IA</div>
+                                <div class="item-company">ESIGELEC, Rouen</div>
+                            </div>
+                            <div class="item-date">2023 - 2026</div>
+                        </div>
+                        <div class="item-description">
+                            Spécialisation en Big Data et Transformation Numérique
+                        </div>
+                        <ul class="item-details">
+                            <li>Gestion de projets Data & IA</li>
+                            <li>Modélisation décisionnelle (SIG, d3.js)</li>
+                            <li>Technologies : Talend, PL/SQL, Power BI</li>
+                            <li>IA : TensorFlow, PyTorch, Spark</li>
+                        </ul>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Classes Préparatoires Scientifiques</div>
+                                <div class="item-company">ESMT, Dakar</div>
+                            </div>
+                            <div class="item-date">2021 - 2023</div>
+                        </div>
+                        <ul class="item-details">
+                            <li>Mathématiques, Physique</li>
+                            <li>Sciences de l'Ingénieur</li>
+                        </ul>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Baccalauréat Sciences Expérimentales</div>
+                                <div class="item-company">Lycée Limamoulaye, Dakar</div>
+                            </div>
+                            <div class="item-date">2020 - 2021</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Expérience -->
+                <section>
+                    <h3 class="section-title">Expériences Professionnelles</h3>
+                    
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Stagiaire Agent de Production</div>
+                                <div class="item-company">La Poste, Rouen</div>
+                            </div>
+                            <div class="item-date">Juin - Juillet 2024</div>
+                        </div>
+                        <ul class="item-details">
+                            <li>Gestion du tri de 500+ courriers/jour pour optimiser les processus logistiques</li>
+                            <li>Participation au chargement/déchargement dans le respect des délais</li>
+                            <li>Travail en équipe pour améliorer l'efficacité des opérations</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Stagiaire Développement Web</div>
+                                <div class="item-company">IP3 Conseil, Dakar</div>
+                            </div>
+                            <div class="item-date">Juillet - Août 2023</div>
+                        </div>
+                        <ul class="item-details">
+                            <li>Développement site web PHP/MySQL pour gestion d'événements sportifs</li>
+                            <li>Conception interface utilisateur HTML/CSS + scripts JavaScript</li>
+                            <li>Collaboration équipe de 3 personnes pour répondre aux besoins utilisateurs</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projets -->
+                <section>
+                    <h3 class="section-title">Projets Techniques</h3>
+                    
+                    <div class="project-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">IA_PRO - Assistant Documentaire RAG</div>
+                                <div class="item-company">Projet Personnel</div>
+                            </div>
+                            <div class="item-date">2024</div>
+                        </div>
+                        <div class="item-description">
+                            Système d'IA conversationnelle pour l'analyse rapide de documents
+                        </div>
+                        <ul class="item-details">
+                            <li>Architecture RAG avec LangChain pour traitement documentaire</li>
+                            <li>Interface Streamlit pour interaction utilisateur intuitive</li>
+                            <li>Gain de 80% du temps d'analyse documentaire</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">LangChain</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">RAG</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Mini-GPT PyTorch from Scratch</div>
+                                <div class="item-company">Projet Académique</div>
+                            </div>
+                            <div class="item-date">2024</div>
+                        </div>
+                        <ul class="item-details">
+                            <li>Implémentation complète d'un modèle transformer</li>
+                            <li>Architecture attention multi-têtes avec PyTorch</li>
+                            <li>Compréhension approfondie des mécanismes LLM</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PyTorch</span>
+                            <span class="tech-tag">Transformers</span>
+                            <span class="tech-tag">Deep Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Classification RFID & Machine Learning</div>
+                                <div class="item-company">Projet Académique</div>
+                            </div>
+                            <div class="item-date">2024</div>
+                        </div>
+                        <ul class="item-details">
+                            <li>Application web C#/ASP.NET pour lecture tags RFID</li>
+                            <li>Algorithmes ML (SVM, KNN, Random Forest) - 95% précision</li>
+                            <li>API intégration entre couches .NET et Python</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">ASP.NET</span>
+                            <span class="tech-tag">Scikit-Learn</span>
+                            <span class="tech-tag">RFID</span>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="item-header">
+                            <div>
+                                <div class="item-title">Analyse Sentiment Tweets</div>
+                                <div class="item-company">Projet Personnel</div>
+                            </div>
+                            <div class="item-date">2023</div>
+                        </div>
+                        <ul class="item-details">
+                            <li>Collecte et analyse de 10k+ tweets via API Twitter</li>
+                            <li>Traitement NLP avec TextBlob/NLTK - 85% précision</li>
+                            <li>Visualisations interactives avec Matplotlib</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLTK</span>
+                            <span class="tech-tag">Twitter API</span>
+                            <span class="tech-tag">Matplotlib</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Section -->
+    <div class="download-section">
+        <button class="download-btn" onclick="downloadCV()">
+            <i class="fas fa-download"></i>
+            Télécharger en PDF
+        </button>
+        <p style="margin-top: 15px; color: var(--text-secondary); font-size: 0.9rem;">
+            Portfolio complet disponible sur : 
+            <a href="https://bouba-dabo.github.io/portfolio/" style="color: var(--accent-cyan); text-decoration: none;">
+                bouba-dabo.github.io/portfolio
+            </a>
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadCV() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 0.5,
+                filename: 'CV_Boubacar_DABO_Data_Science_2024.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    letterRendering: true
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                }
+            };
+
+            // Masquer temporairement la section de téléchargement
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Restaurer la section de téléchargement
+                downloadSection.style.display = 'block';
+            });
+        }
+
+        // Animation d'entrée
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.education-item, .experience-item, .project-item');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

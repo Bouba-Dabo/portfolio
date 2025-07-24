@@ -134,6 +134,29 @@ body.loading {
     color: var(--primary-color);
 }
 
+/* CV Link Special Styling */
+.cv-link {
+    background: var(--gradient-primary);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.cv-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+    color: var(--text-primary) !important;
+}
+
+.cv-link::after {
+    display: none;
+}
+
+.cv-link i {
+    margin-right: 5px;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
