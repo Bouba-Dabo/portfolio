@@ -133,49 +133,14 @@ function setupProjectFilters() {
 
 // CV Download functionality - SECURED
 function downloadCV() {
-    const cvContent = `BOUBACAR DABO - Étudiant-Ingénieur IA & Data Science
-    
-Contact: dabom372@gmail.com
-Localisation: Rouen (études) • Saint-Denis Paris (résidence)
-Portfolio: https://bouba-dabo.github.io/portfolio
-
-OBJECTIF: Stage de fin d'études en Data Science / Intelligence Artificielle (Février 2026)
-
-FORMATION:
-• ESIGELEC - Cycle Ingénieur Big Data & Transformation Numérique (2023-2026)
-• Spécialisation: Intelligence Artificielle, Machine Learning, NLP
-
-COMPÉTENCES TECHNIQUES:
-• Langages: Python, SQL, R, JavaScript
-• IA/ML: PyTorch, TensorFlow, Scikit-learn, Pandas, NumPy
-• NLP: spaCy, NLTK, Transformers, LangChain
-• Data Viz: Plotly, Matplotlib, Streamlit
-• Outils: Git, Docker, Jupyter, VS Code
-
-PROJETS PHARES:
-• IA_PRO: Assistant documentaire avec architecture RAG
-• Mini-GPT PyTorch: Implémentation transformer from scratch
-• DocuAI: Application NLP avec interface Streamlit
-• E-commerce Analyzer: Dashboard analytics avec ML
-
-LANGUES: Français (natif), Anglais (courant), Arabe (notions)
-`;
-
     try {
-        const blob = new Blob([cvContent], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Boubacar_DABO_CV_2025.txt';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        // Rediriger vers le CV moderne HTML avec téléchargement PDF
+        window.open('cv.html', '_blank');
+        showNotification('CV ouvert dans un nouvel onglet', 'success');
         return true;
     } catch (error) {
-        console.error('Erreur lors du téléchargement du CV:', error);
-        showNotification('Erreur lors du téléchargement', 'error');
+        console.error('Erreur lors de l\'ouverture du CV:', error);
+        showNotification('Erreur lors de l\'ouverture du CV', 'error');
         return false;
     }
 }
