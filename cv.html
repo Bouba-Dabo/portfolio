@@ -667,9 +667,13 @@
     <div class="download-section">
         <button class="download-btn" onclick="downloadCV()">
             <i class="fas fa-download"></i>
-            Télécharger en PDF
+            Télécharger en PDF (Recommandé)
         </button>
-        <button class="download-btn" onclick="window.print()" style="margin-left: 15px; background: linear-gradient(135deg, #ff006b 0%, #ff7b00 100%);">
+        <button class="download-btn" onclick="downloadCVPDF()" style="margin-left: 15px; background: linear-gradient(135deg, #ff006b 0%, #ff7b00 100%);">
+            <i class="fas fa-file-pdf"></i>
+            PDF Direct
+        </button>
+        <button class="download-btn" onclick="window.print()" style="margin-left: 15px; background: linear-gradient(135deg, #9d4edd 0%, #663399 100%);">
             <i class="fas fa-print"></i>
             Imprimer
         </button>
@@ -680,87 +684,272 @@
             </a>
         </p>
         <p style="margin-top: 10px; color: var(--text-secondary); font-size: 0.8rem; opacity: 0.7;">
-            💡 Si le téléchargement PDF ne fonctionne pas, utilisez le bouton "Imprimer" puis "Enregistrer en PDF"
+            💡 <strong>Méthode recommandée</strong> : Utilisez "Télécharger en PDF (Recommandé)" puis "Enregistrer en PDF" dans la boîte de dialogue d'impression
         </p>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         function downloadCV() {
-            // Vérifier si html2pdf est disponible
+            // Alternative plus fiable - utiliser window.print() directement
+            const element = document.getElementById('cv-content');
+            
+            // Créer une nouvelle fenêtre pour l'impression
+            const printWindow = window.open('', '_blank');
+            
+            // Copier le contenu et les styles
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>CV - Boubacar DABO</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+                    <style>
+                        * { margin: 0; padding: 0; box-sizing: border-box; }
+                        body { 
+                            font-family: 'Rajdhani', sans-serif; 
+                            background: white; 
+                            color: black; 
+                            line-height: 1.6; 
+                            -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
+                        }
+                        .cv-container { 
+                            max-width: 210mm; 
+                            margin: 0 auto; 
+                            background: white; 
+                            min-height: 297mm; 
+                        }
+                        .cv-header { 
+                            background: linear-gradient(135deg, #00d4ff 0%, #9d4edd 100%); 
+                            padding: 40px; 
+                            text-align: center; 
+                            color: white;
+                            -webkit-print-color-adjust: exact;
+                            print-color-adjust: exact;
+                        }
+                        .cv-header h1 { 
+                            font-family: 'Orbitron', sans-serif; 
+                            font-size: 2.5rem; 
+                            font-weight: 900; 
+                            margin-bottom: 15px; 
+                        }
+                        .cv-header .subtitle { 
+                            font-size: 1.1rem; 
+                            font-weight: 400; 
+                            opacity: 0.9; 
+                        }
+                        .cv-content { 
+                            display: grid; 
+                            grid-template-columns: 1fr 2fr; 
+                            gap: 0; 
+                        }
+                        .cv-sidebar { 
+                            background: #f8f9fa; 
+                            padding: 30px 25px; 
+                            border-right: 2px solid #00d4ff; 
+                        }
+                        .cv-main { 
+                            padding: 30px; 
+                            background: white; 
+                        }
+                        .section-title { 
+                            font-family: 'Orbitron', sans-serif; 
+                            font-size: 1.2rem; 
+                            font-weight: 700; 
+                            color: #00d4ff; 
+                            margin-bottom: 20px; 
+                            text-transform: uppercase; 
+                            letter-spacing: 1px; 
+                            border-bottom: 2px solid #00d4ff;
+                            padding-bottom: 5px;
+                        }
+                        .contact-item { 
+                            display: flex; 
+                            align-items: center; 
+                            margin-bottom: 12px; 
+                            font-size: 0.95rem; 
+                        }
+                        .contact-item i { 
+                            width: 20px; 
+                            color: #00d4ff; 
+                            margin-right: 10px; 
+                        }
+                        .skills-category { 
+                            margin-bottom: 20px; 
+                        }
+                        .skills-category h4 { 
+                            color: #ff006b; 
+                            font-weight: 600; 
+                            margin-bottom: 8px; 
+                            font-size: 1rem; 
+                        }
+                        .skill-item { 
+                            background: rgba(0, 212, 255, 0.1); 
+                            padding: 6px 10px; 
+                            margin: 4px 0; 
+                            border-radius: 4px; 
+                            border-left: 3px solid #00d4ff; 
+                            font-size: 0.85rem; 
+                        }
+                        .languages-grid { 
+                            display: grid; 
+                            grid-template-columns: 1fr 1fr; 
+                            gap: 8px; 
+                        }
+                        .language-item { 
+                            text-align: center; 
+                            padding: 8px; 
+                            background: rgba(157, 78, 221, 0.1); 
+                            border-radius: 4px; 
+                            border: 1px solid #9d4edd; 
+                            font-size: 0.85rem;
+                        }
+                        .experience-item, .education-item, .project-item { 
+                            margin-bottom: 25px; 
+                            position: relative; 
+                            padding-left: 15px; 
+                        }
+                        .experience-item::before, .education-item::before, .project-item::before { 
+                            content: '●'; 
+                            position: absolute; 
+                            left: 0; 
+                            top: 2px; 
+                            color: #00d4ff; 
+                            font-size: 12px;
+                        }
+                        .item-header { 
+                            margin-bottom: 8px; 
+                        }
+                        .item-title { 
+                            font-weight: 700; 
+                            color: #00d4ff; 
+                            font-size: 1rem; 
+                        }
+                        .item-company { 
+                            color: #ff006b; 
+                            font-weight: 600; 
+                            font-size: 0.9rem;
+                        }
+                        .item-date { 
+                            color: #666; 
+                            font-size: 0.85rem; 
+                            font-weight: 500; 
+                            float: right;
+                        }
+                        .item-description { 
+                            color: #555; 
+                            margin-bottom: 8px; 
+                            font-size: 0.9rem;
+                        }
+                        .item-details { 
+                            list-style: none; 
+                        }
+                        .item-details li { 
+                            padding: 2px 0; 
+                            padding-left: 15px; 
+                            position: relative; 
+                            color: #555; 
+                            font-size: 0.85rem; 
+                        }
+                        .item-details li::before { 
+                            content: '▸'; 
+                            position: absolute; 
+                            left: 0; 
+                            color: #00d4ff; 
+                        }
+                        .certifications { 
+                            background: rgba(157, 78, 221, 0.1); 
+                            padding: 15px; 
+                            border-radius: 8px; 
+                            border: 1px solid #9d4edd; 
+                            margin-bottom: 20px; 
+                        }
+                        .tech-tags { 
+                            display: flex; 
+                            flex-wrap: wrap; 
+                            gap: 6px; 
+                            margin-top: 8px; 
+                        }
+                        .tech-tag { 
+                            background: rgba(0, 212, 255, 0.2); 
+                            color: #00d4ff; 
+                            padding: 3px 6px; 
+                            border-radius: 12px; 
+                            font-size: 0.75rem; 
+                            border: 1px solid #00d4ff; 
+                        }
+                        @page { 
+                            margin: 0.5in; 
+                            size: A4; 
+                        }
+                        @media print {
+                            body { font-size: 11pt; }
+                            .cv-header h1 { font-size: 24pt; }
+                            .section-title { font-size: 12pt; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${element.outerHTML.replace(/<div class="download-section">[\s\S]*?<\/div>/, '')}
+                </body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            
+            // Attendre que les styles se chargent puis imprimer
+            setTimeout(() => {
+                printWindow.focus();
+                printWindow.print();
+                setTimeout(() => {
+                    printWindow.close();
+                }, 1000);
+            }, 500);
+        }
+
+        // Fonction alternative avec html2pdf (backup)
+        function downloadCVPDF() {
             if (typeof html2pdf === 'undefined') {
                 console.error('html2pdf library not loaded');
-                // Fallback - ouvrir la page en mode impression
-                window.print();
+                downloadCV(); // Fallback vers la méthode print
                 return;
             }
 
             const element = document.getElementById('cv-content');
             
-            // Optimiser l'élément pour le PDF
-            const originalStyle = element.style.cssText;
-            element.style.cssText = originalStyle + '; max-width: none; box-shadow: none; margin: 0; padding: 0;';
-            
             const opt = {
-                margin: [0.5, 0.5, 0.5, 0.5],
+                margin: 10,
                 filename: 'CV_Boubacar_DABO_Data_Science_2025.pdf',
-                image: { 
-                    type: 'jpeg', 
-                    quality: 0.95
-                },
+                image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { 
-                    scale: 1.5,
+                    scale: 2,
                     useCORS: true,
-                    letterRendering: true,
-                    logging: false,
-                    width: 794,
-                    height: 1123
+                    allowTaint: true,
+                    backgroundColor: '#ffffff'
                 },
                 jsPDF: { 
-                    unit: 'px', 
+                    unit: 'mm', 
                     format: 'a4', 
-                    orientation: 'portrait'
-                },
-                pagebreak: { 
-                    mode: ['avoid-all', 'css', 'legacy'] 
+                    orientation: 'portrait' 
                 }
             };
 
-            // Masquer temporairement la section de téléchargement
+            // Masquer la section de téléchargement
             const downloadSection = document.querySelector('.download-section');
             const originalDisplay = downloadSection.style.display;
             downloadSection.style.display = 'none';
 
-            // Générer et télécharger le PDF
-            html2pdf()
-                .set(opt)
-                .from(element)
-                .save()
-                .then(() => {
-                    // Restaurer les styles originaux
-                    element.style.cssText = originalStyle;
-                    downloadSection.style.display = originalDisplay;
-                    console.log('PDF généré avec succès');
-                })
-                .catch((error) => {
-                    console.error('Erreur lors de la génération du PDF:', error);
-                    // Fallback en cas d'erreur
-                    window.print();
-                    // Restaurer les styles
-                    element.style.cssText = originalStyle;
-                    downloadSection.style.display = originalDisplay;
-                });
+            html2pdf().set(opt).from(element).save().finally(() => {
+                downloadSection.style.display = originalDisplay;
+            });
         }
 
-        // Test si la bibliothèque est chargée
+        // Test des fonctionnalités au chargement
         window.addEventListener('load', function() {
-            setTimeout(() => {
-                if (typeof html2pdf === 'undefined') {
-                    console.warn('html2pdf.js not loaded properly, will use print fallback');
-                } else {
-                    console.log('html2pdf.js loaded successfully');
-                }
-            }, 1000);
+            console.log('CV page loaded successfully');
         });
 
         // Animation d'entrée
