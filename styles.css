@@ -681,6 +681,10 @@ body.loading {
     overflow: hidden;
 }
 
+.featured-watts {
+    order: -1;
+}
+
 .project-card::before {
     content: '';
     position: absolute;

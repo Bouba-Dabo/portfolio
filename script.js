@@ -560,7 +560,7 @@ function initScrollNavbar() {
 
 // Project demo functionality - SECURED
 function initProjectDemos() {
-    const validProjects = new Set(['IA_PRO', 'Mini-GPT PyTorch', 'DocuAI', 'E-commerce Analyzer']);
+    const validProjects = new Set(['IA_PRO', 'Mini-GPT PyTorch', 'DocuAI', 'E-commerce Analyzer', "Watt's My Score"]);
     
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('demo-btn') || e.target.parentElement.classList.contains('demo-btn')) {
@@ -584,7 +584,8 @@ function showProjectDemo(projectTitle) {
         'IA_PRO': 'Assistant IA pour l\'analyse documentaire avec RAG',
         'Mini-GPT PyTorch': 'Architecture transformer et processus d\'entraînement',
         'DocuAI': 'Interface NLP avec extraction d\'entités en temps réel',
-        'E-commerce Analyzer': 'Dashboard interactif avec prédictions ML'
+        'E-commerce Analyzer': 'Dashboard interactif avec prédictions ML',
+        "Watt's My Score": 'Scoring énergétique intelligent et recommandations IA personnalisées'
     };
     
     const demoContent = demos[projectTitle] || 'Démonstration interactive disponible';
@@ -1037,9 +1038,10 @@ function initializeChatbot() {
 2. **Mini-GPT PyTorch** - Implémentation transformer from scratch
 3. **DocuAI** - Application NLP ouverte
 4. **E-commerce Analyzer** - Dashboard analytics avancé
-5. **Assistant Claude GPT** - IA conversationnelle
-6. **Classification RFID** - ML pour identification automatique
-7. **Analyse Sentiment Tweets** - NLP pour opinion publique
+5. **Watt's My Score** - Scoring énergétique et recommandations IA
+6. **Assistant Claude GPT** - IA conversationnelle
+7. **Classification RFID** - ML pour identification automatique
+8. **Analyse Sentiment Tweets** - NLP pour opinion publique
 
 🔗 **Démonstration :** [Showcase App](https://bouba-dabo-showcase-app-hnfxcf.streamlit.app/)`
         },
@@ -1366,6 +1368,13 @@ function initializeSkillsMatching() {
             technologies: ['python', 'pandas', 'plotly', 'scikit-learn', 'streamlit'],
             domain: ['data-science', 'business-intelligence', 'machine-learning'],
             relevance: 92
+        },
+        "Watt's My Score": {
+            title: "Watt's My Score - Scoring énergétique IA",
+            description: 'Plateforme de scoring énergétique avec recommandations IA personnalisées',
+            technologies: ['python', 'api', 'mysql', 'streamlit', 'machine learning'],
+            domain: ['data-science', 'ai', 'machine-learning'],
+            relevance: 91
         },
         'Classification RFID': {
             title: 'Classification RFID ML',
@@ -1763,6 +1772,7 @@ PROJETS PERTINENTS:
 - Mini-GPT PyTorch: Implémentation transformer from scratch
 - DocuAI: Application NLP avec interface Streamlit
 - E-commerce Analyzer: Dashboard analytics avec ML
+- Watt's My Score: Scoring énergétique avec recommandations IA
 
 CONTACT:
 Email: dabom372@gmail.com
